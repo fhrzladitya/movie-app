@@ -632,33 +632,33 @@ useEffect(() => {
           </div>
 
           <form className={`mb-10 rounded-3xl border p-5 shadow-2xl backdrop-blur-xl ${cardClass}`}>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder={text.searchPlaceholder}
-                className={`w-full rounded-2xl border p-4 pr-12 outline-none focus:ring-2 focus:ring-red-500 ${
-                  isDark
-                    ? "border-white/10 bg-black/25 text-white placeholder:text-gray-400"
-                    : "border-slate-200 bg-white text-slate-950 placeholder:text-slate-500"
-                }`}
-                value={search}
-                onChange={(event) => setSearch(event.target.value)}
-              />
-
-              {search && (
-                <button
-                  type="button"
-                  onClick={() => setSearch("")}
-                  className={`absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold transition ${
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder={text.searchPlaceholder}
+                  className={`w-full rounded-2xl border p-4 pr-12 outline-none focus:ring-2 focus:ring-red-500 ${
                     isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-slate-400 hover:text-slate-950"
+                      ? "border-white/10 bg-black/25 text-white placeholder:text-gray-400"
+                      : "border-slate-200 bg-white text-slate-950 placeholder:text-slate-500"
                   }`}
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                />
+
+                {search && (
+                  <button
+                    type="button"
+                    onClick={() => setSearch("")}
+                    className={`absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold transition ${
+                      isDark
+                        ? "text-gray-400 hover:text-white"
+                        : "text-slate-400 hover:text-slate-950"
+                    }`}
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
 
             <fieldset className="mt-5">
               <legend className={`mb-3 text-sm font-bold ${subtleText}`}>{text.genreFilter}</legend>

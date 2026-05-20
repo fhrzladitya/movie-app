@@ -5,6 +5,10 @@ const navText = {
       movies: "Film",
       api: "Data API",
     },
+    theme: {
+      dark: "Terang",
+      light: "Gelap",
+    },
     languageButton: "EN",
   },
   en: {
@@ -12,6 +16,10 @@ const navText = {
       home: "Home",
       movies: "Movies",
       api: "API Data",
+    },
+    theme: {
+      dark: "Light",
+      light: "Dark",
     },
     languageButton: "ID",
   },
@@ -77,7 +85,7 @@ function Navbar({ theme, language, activePage, onNavigate, onToggleTheme, onTogg
                 : "border-slate-200 bg-white/75 hover:bg-white"
             }`}
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            {text.theme[theme]}
           </button>
         </div>
       </div>

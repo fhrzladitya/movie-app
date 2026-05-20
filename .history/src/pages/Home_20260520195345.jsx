@@ -632,11 +632,11 @@ useEffect(() => {
           </div>
 
           <form className={`mb-10 rounded-3xl border p-5 shadow-2xl backdrop-blur-xl ${cardClass}`}>
-            <div className="relative">
+            <div className="grid gap-4 md:grid-cols-[1fr_240px]">
               <input
                 type="text"
                 placeholder={text.searchPlaceholder}
-                className={`w-full rounded-2xl border p-4 pr-12 outline-none focus:ring-2 focus:ring-red-500 ${
+                className={`w-full rounded-2xl border p-4 outline-none focus:ring-2 focus:ring-red-500 ${
                   isDark
                     ? "border-white/10 bg-black/25 text-white placeholder:text-gray-400"
                     : "border-slate-200 bg-white text-slate-950 placeholder:text-slate-500"
@@ -645,19 +645,19 @@ useEffect(() => {
                 onChange={(event) => setSearch(event.target.value)}
               />
 
-              {search && (
-                <button
-                  type="button"
-                  onClick={() => setSearch("")}
-                  className={`absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold transition ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-slate-400 hover:text-slate-950"
-                  }`}
-                >
-                  ✕
-                </button>
-              )}
+              <label
+                className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 font-semibold ${
+                  isDark ? "border-white/10 bg-black/20" : "border-slate-200 bg-white"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={onlyHighRated}
+                  onChange={(event) => setOnlyHighRated(event.target.checked)}
+                  className="h-5 w-5 accent-red-500"
+                />
+                {text.highRated}
+              </label>
             </div>
 
             <fieldset className="mt-5">

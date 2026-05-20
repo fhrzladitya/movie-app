@@ -77,7 +77,7 @@ function Navbar({ theme, language, activePage, onNavigate, onToggleTheme, onTogg
                 : "border-slate-200 bg-white/75 hover:bg-white"
             }`}
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            {text.theme[theme]}
           </button>
         </div>
       </div>
