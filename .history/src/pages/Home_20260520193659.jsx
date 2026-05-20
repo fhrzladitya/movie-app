@@ -430,52 +430,44 @@ function Home({ theme, language, activePage, onNavigate }) {
   const getGenreLabel = (genre) => text.genres[genre] || genre
 
   const [apiItems, setApiItems] = useState([])
-  const [apiLoading, setApiLoading] = useState(false)
-  const [apiError, setApiError] = useState(false)
-  const [apiFetched, setApiFetched] = useState(false)
+const [apiLoading, setApiLoading] = useState(false)
+const [apiError, setApiError] = useState(false)
+const [apiFetched, setApiFetched] = useState(false)
   const [search, setSearch] = useState("")
   const [activeGenre, setActiveGenre] = useState("All")
   const [onlyHighRated, setOnlyHighRated] = useState(false)
   const [selectedMovie, setSelectedMovie] = useState(null)
 
-useEffect(() => {
-  if (activePage !== "api" || apiFetched) return
+  useEffect(() => {
+    let isMounted = true
+    const minimumLoadingTime = new Promise((resolve) => setTimeout(resolve, 1200))
 
-  let isMounted = true
+    Promise.all([
+      axios.get("https://api.tvmaze.com/shows?page=1"),
+      minimumLoadingTime,
+    ])
+      .then(([response]) => {
+        if (!isMounted) return
 
-  setApiLoading(true)
+        setApiItems(response.data.slice(0, 10))
+        setApiError(false)
+      })
+      .catch(() => {
+        if (!isMounted) return
 
-  const minimumLoadingTime = new Promise((resolve) =>
-    setTimeout(resolve, 1200)
-  )
+        setApiItems(fallbackShows)
+        setApiError(true)
+      })
+      .finally(() => {
+        if (!isMounted) return
 
-  Promise.all([
-    axios.get("https://api.tvmaze.com/shows?page=1"),
-    minimumLoadingTime,
-  ])
-    .then(([response]) => {
-      if (!isMounted) return
+        setApiLoading(false)
+      })
 
-      setApiItems(response.data.slice(0, 10))
-      setApiError(false)
-    })
-    .catch(() => {
-      if (!isMounted) return
-
-      setApiItems(fallbackShows)
-      setApiError(true)
-    })
-    .finally(() => {
-      if (!isMounted) return
-
-      setApiLoading(false)
-      setApiFetched(true)
-    })
-
-  return () => {
-    isMounted = false
-  }
-}, [activePage, apiFetched])
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],

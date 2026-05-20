@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 function App() {
   const [theme, setTheme] = useState("dark")
   const [language, setLanguage] = useState("id")
+  const [activePage, setActivePage] = useState("home")
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"))
@@ -19,10 +20,12 @@ function App() {
       <Navbar
         theme={theme}
         language={language}
+        activePage={activePage}
+        onNavigate={setActivePage}
         onToggleTheme={toggleTheme}
         onToggleLanguage={toggleLanguage}
       />
-      <Home theme={theme} language={language} />
+      <Home theme={theme} language={language} activePage={activePage} onNavigate={setActivePage} />
     </>
   )
 }

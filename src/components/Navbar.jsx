@@ -1,7 +1,10 @@
 const navText = {
   id: {
-    home: "Beranda",
-    movies: "Film",
+    pages: {
+      home: "Beranda",
+      movies: "Film",
+      api: "Data API",
+    },
     theme: {
       dark: "Terang",
       light: "Gelap",
@@ -9,8 +12,11 @@ const navText = {
     languageButton: "EN",
   },
   en: {
-    home: "Home",
-    movies: "Movies",
+    pages: {
+      home: "Home",
+      movies: "Movies",
+      api: "API Data",
+    },
     theme: {
       dark: "Light",
       light: "Dark",
@@ -19,42 +25,43 @@ const navText = {
   },
 }
 
-function Navbar({ theme, language, onToggleTheme, onToggleLanguage }) {
+function Navbar({ theme, language, activePage, onNavigate, onToggleTheme, onToggleLanguage }) {
   const text = navText[language]
   const isDark = theme === "dark"
+
+  const navButtonClass = (page) =>
+    `px-4 py-2 rounded-full transition ${
+      activePage === page
+        ? "bg-red-500 text-white shadow-lg shadow-red-500/25"
+        : isDark
+          ? "hover:bg-white/10 hover:text-yellow-300"
+          : "hover:bg-white/80 hover:text-red-500"
+    }`
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 border-b shadow-2xl backdrop-blur-xl ${
         isDark
-          ? "border-white/10 bg-black/25 text-white"
-          : "border-slate-900/10 bg-white/35 text-slate-950"
+          ? "border-white/10 bg-black/30 text-white"
+          : "border-slate-900/10 bg-white/45 text-slate-950"
       }`}
     >
       <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3 px-5 py-4">
-        <h1 className="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-red-500 via-orange-400 to-yellow-300 bg-clip-text text-transparent">
+        <button
+          type="button"
+          onClick={() => onNavigate("home")}
+          className="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-red-500 via-orange-400 to-yellow-300 bg-clip-text text-transparent"
+        >
           MovieVerse
-        </h1>
+        </button>
 
-        <div className="flex items-center gap-2 text-sm font-semibold">
-          <nav className="flex items-center gap-2">
-            <a
-              href="#"
-              className={`px-4 py-2 rounded-full transition ${
-                isDark ? "hover:bg-white/10 hover:text-yellow-300" : "hover:bg-white/80 hover:text-red-500"
-              }`}
-            >
-              {text.home}
-            </a>
-
-            <a
-              href="#movies"
-              className={`px-4 py-2 rounded-full transition ${
-                isDark ? "hover:bg-white/10 hover:text-yellow-300" : "hover:bg-white/80 hover:text-red-500"
-              }`}
-            >
-              {text.movies}
-            </a>
+        <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+          <nav className="flex flex-wrap items-center gap-2">
+            {Object.entries(text.pages).map(([page, label]) => (
+              <button key={page} type="button" onClick={() => onNavigate(page)} className={navButtonClass(page)}>
+                {label}
+              </button>
+            ))}
           </nav>
 
           <button

@@ -67,136 +67,6 @@ const movieData = [
     summary:
       "Batman uncovers corruption in Gotham City while pursuing the Riddler, a serial killer targeting elites.",
   },
-  {
-    id: 6,
-    name: "Dune: Part Two",
-    badge: "Blockbuster",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-      original: "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-    },
-    rating: { average: 8.9 },
-    genres: ["Sci-Fi", "Adventure"],
-    summary:
-      "Paul Atreides unites with Chani and the Fremen while seeking revenge against those who destroyed his family.",
-  },
-  {
-    id: 7,
-    name: "Inside Out 2",
-    badge: "New",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
-      original: "https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
-    },
-    rating: { average: 8.0 },
-    genres: ["Animation", "Comedy"],
-    summary:
-      "Riley enters her teenage years as new emotions arrive and shake up headquarters.",
-  },
-  {
-    id: 8,
-    name: "Deadpool & Wolverine",
-    badge: "Fan Favorite",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
-      original: "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
-    },
-    rating: { average: 8.1 },
-    genres: ["Action", "Comedy"],
-    summary:
-      "Deadpool teams up with Wolverine for a chaotic mission that could change their universe.",
-  },
-  {
-    id: 9,
-    name: "Godzilla x Kong",
-    badge: "Epic",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
-      original: "https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
-    },
-    rating: { average: 7.2 },
-    genres: ["Action", "Sci-Fi"],
-    summary:
-      "Godzilla and Kong face a colossal hidden threat that challenges the survival of both monsters and humanity.",
-  },
-  {
-    id: 10,
-    name: "Furiosa",
-    badge: "New",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
-      original: "https://image.tmdb.org/t/p/original/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
-    },
-    rating: { average: 7.6 },
-    genres: ["Action", "Adventure"],
-    summary:
-      "Young Furiosa is taken from the Green Place and must survive a brutal wasteland ruled by warlords.",
-  },
-  {
-    id: 11,
-    name: "Kingdom of the Planet of the Apes",
-    badge: "New",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
-      original: "https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
-    },
-    rating: { average: 7.3 },
-    genres: ["Action", "Sci-Fi"],
-    summary:
-      "Generations after Caesar, a young ape questions a new empire and begins a journey that changes the future.",
-  },
-  {
-    id: 12,
-    name: "Oppenheimer",
-    badge: "Top Rated",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-      original: "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    },
-    rating: { average: 8.6 },
-    genres: ["Drama", "History"],
-    summary:
-      "J. Robert Oppenheimer leads the Manhattan Project and faces the consequences of creating the atomic bomb.",
-  },
-  {
-    id: 13,
-    name: "Spider-Man: Across the Spider-Verse",
-    badge: "Fan Favorite",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-      original: "https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-    },
-    rating: { average: 8.7 },
-    genres: ["Animation", "Action"],
-    summary:
-      "Miles Morales travels across the multiverse and clashes with a team of Spider-People over how to save everyone.",
-  },
-  {
-    id: 14,
-    name: "Mission: Impossible - Dead Reckoning",
-    badge: "Action Hit",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
-      original: "https://image.tmdb.org/t/p/original/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
-    },
-    rating: { average: 7.7 },
-    genres: ["Action", "Adventure"],
-    summary:
-      "Ethan Hunt and his IMF team race against time to stop a dangerous weapon from falling into the wrong hands.",
-  },
-  {
-    id: 15,
-    name: "Guardians of the Galaxy Vol. 3",
-    badge: "Blockbuster",
-    image: {
-      medium: "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-      original: "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-    },
-    rating: { average: 8.0 },
-    genres: ["Action", "Comedy"],
-    summary:
-      "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
-  },
 ]
 
 const trailers = {
@@ -205,38 +75,12 @@ const trailers = {
   Inception: "https://www.youtube.com/embed/YoHD9XEInc0",
   Joker: "https://www.youtube.com/embed/zAGVQLHvwOY",
   "The Batman": "https://www.youtube.com/embed/mqqft2x_Aa4",
-  "Dune: Part Two": "https://www.youtube.com/embed/Way9Dexny3w",
-  "Inside Out 2": "https://www.youtube.com/embed/LEjhY15eCx0",
-  "Deadpool & Wolverine": "https://www.youtube.com/embed/73_1biulkYk",
-  "Godzilla x Kong": "https://www.youtube.com/embed/lV1OOlGwExM",
-  Furiosa: "https://www.youtube.com/embed/XJMuhwVlca4",
-  "Kingdom of the Planet of the Apes": "https://www.youtube.com/embed/XtFI7SNtVpY",
-  Oppenheimer: "https://www.youtube.com/embed/uYPbbksJxIg",
-  "Spider-Man: Across the Spider-Verse": "https://www.youtube.com/embed/cqGjhVJWtEg",
-  "Mission: Impossible - Dead Reckoning": "https://www.youtube.com/embed/avz06PDqDbM",
-  "Guardians of the Galaxy Vol. 3": "https://www.youtube.com/embed/u3V5KDHRQvk",
 }
 
-const fallbackShows = [
-  "Under the Dome",
-  "Person of Interest",
-  "Bitten",
-  "Arrow",
-  "True Detective",
-  "The 100",
-  "Homeland",
-  "Gotham",
-  "The Flash",
-  "Silicon Valley",
-].map((name, index) => ({
+const fallbackPosts = Array.from({ length: 10 }, (_, index) => ({
   id: index + 1,
-  name,
-  genres: index % 2 === 0 ? ["Drama", "Science-Fiction"] : ["Action", "Adventure"],
-  rating: { average: 7 + index / 10 },
-  language: "English",
-  premiered: `201${index % 10}-01-01`,
-  summary:
-    "Fallback TV show data appears only when the TVMaze API cannot be reached during local development.",
+  title: `Movie API sample item ${index + 1}`,
+  body: "Fallback data appears only when the public API cannot be reached during local development.",
 }))
 
 const translations = {
@@ -247,13 +91,13 @@ const translations = {
     heroDescription:
       "Temukan film-film yang sedang tren, jelajahi trailer resminya, dan nikmati pengalaman sinematik modern.",
     openMovies: "Lihat Katalog Film",
+    openApi: "Lihat Data API",
     totalMovies: "Film Populer",
     officialTrailer: "Trailer Resmi",
     freeAccess: "Akses Gratis",
     freeShort: "Gratis",
     explore: "Jelajahi Film",
     popularThisWeek: "Populer Minggu Ini",
-    trendingSubtitle: "5 film favorit dengan rating dan tren terbaik di MovieVerse.",
     movieFound: "film ditemukan",
     searchPlaceholder: "Cari film favoritmu...",
     highRated: "Hanya rating 8.7 ke atas",
@@ -265,14 +109,11 @@ const translations = {
     apiEyebrow: "Integrasi Axios",
     apiTitle: "Data dari Public API",
     apiDescription:
-      "Halaman ini mengambil 10 data show dari TVMaze API menggunakan Axios dan menampilkannya sebagai daftar film/series eksternal.",
+      "Halaman ini mengambil 10 item dari JSONPlaceholder menggunakan Axios dan menampilkannya sebagai daftar data eksternal.",
     apiSource: "Sumber API",
-    apiLoading: "Mengambil 10 data show dari TVMaze API...",
+    apiLoading: "Mengambil 10 data dari Public API...",
     apiError: "API sedang tidak tersedia, menampilkan data cadangan agar tampilan tetap bisa diuji.",
-    apiLanguage: "Bahasa",
-    apiPremiered: "Tayang perdana",
-    apiGenres: "Genre",
-    apiNoRating: "Belum ada rating",
+    apiItems: "item API tampil",
     footerTech: "Dibuat menggunakan React JS, Tailwind CSS, Axios, dan Public API.",
     footerRights: "(c) 2026 MovieVerse. Semua hak dilindungi.",
     genreAll: "Semua",
@@ -282,9 +123,6 @@ const translations = {
       "Sci-Fi": "Fiksi Ilmiah",
       Drama: "Drama",
       Crime: "Kriminal",
-      Animation: "Animasi",
-      Comedy: "Komedi",
-      History: "Sejarah",
     },
     badges: {
       Trending: "Trending",
@@ -292,10 +130,6 @@ const translations = {
       "Mind Bender": "Penuh Misteri",
       "Critic Pick": "Pilihan Kritikus",
       New: "Baru",
-      Blockbuster: "Blockbuster",
-      "Fan Favorite": "Favorit",
-      Epic: "Epik",
-      "Action Hit": "Aksi",
     },
     summaries: {
       Avengers:
@@ -308,26 +142,6 @@ const translations = {
         "Seorang komedian gagal perlahan tenggelam dalam kegilaan dan berubah menjadi Joker yang terkenal di Gotham City.",
       "The Batman":
         "Batman mengungkap korupsi di Gotham City saat memburu Riddler, pembunuh berantai yang menargetkan kaum elite.",
-      "Dune: Part Two":
-        "Paul Atreides bersatu dengan Chani dan bangsa Fremen sambil membalas dendam kepada pihak yang menghancurkan keluarganya.",
-      "Inside Out 2":
-        "Riley memasuki masa remaja saat emosi-emosi baru datang dan mengguncang pusat kendali pikirannya.",
-      "Deadpool & Wolverine":
-        "Deadpool bekerja sama dengan Wolverine dalam misi kacau yang dapat mengubah semesta mereka.",
-      "Godzilla x Kong":
-        "Godzilla dan Kong menghadapi ancaman raksasa tersembunyi yang menguji nasib para titan dan umat manusia.",
-      Furiosa:
-        "Furiosa muda diculik dari Green Place dan harus bertahan di gurun brutal yang dikuasai para panglima perang.",
-      "Kingdom of the Planet of the Apes":
-        "Beberapa generasi setelah Caesar, seekor kera muda mempertanyakan kerajaan baru dan memulai perjalanan besar.",
-      Oppenheimer:
-        "J. Robert Oppenheimer memimpin Proyek Manhattan dan menghadapi konsekuensi dari penciptaan bom atom.",
-      "Spider-Man: Across the Spider-Verse":
-        "Miles Morales melintasi multiverse dan berselisih dengan para Spider-People tentang cara menyelamatkan semua orang.",
-      "Mission: Impossible - Dead Reckoning":
-        "Ethan Hunt dan tim IMF berpacu dengan waktu untuk mencegah senjata berbahaya jatuh ke tangan yang salah.",
-      "Guardians of the Galaxy Vol. 3":
-        "Para Guardians bersatu untuk melindungi Rocket dan menghadapi misi yang dapat mengubah keluarga mereka selamanya.",
     },
   },
   en: {
@@ -337,13 +151,13 @@ const translations = {
     heroDescription:
       "Discover trending movies, explore official trailers, and enjoy a modern cinematic experience.",
     openMovies: "Explore Movies",
+    openApi: "View API Data",
     totalMovies: "Popular Movies",
     officialTrailer: "Official Trailer",
     freeAccess: "Free Access",
     freeShort: "Free",
     explore: "Explore Movies",
     popularThisWeek: "Popular This Week",
-    trendingSubtitle: "5 favorite movies with the strongest ratings and trend signals in MovieVerse.",
     movieFound: "movie found",
     searchPlaceholder: "Search your favorite movie...",
     highRated: "Only rating 8.7 and above",
@@ -355,14 +169,11 @@ const translations = {
     apiEyebrow: "Axios Integration",
     apiTitle: "Public API Data",
     apiDescription:
-      "This page fetches 10 shows from the TVMaze API using Axios and displays them as external movie/series data.",
+      "This page fetches 10 items from JSONPlaceholder using Axios and displays them as external data.",
     apiSource: "API Source",
-    apiLoading: "Fetching 10 shows from the TVMaze API...",
+    apiLoading: "Fetching 10 items from Public API...",
     apiError: "The API is unavailable, showing fallback data so the interface can still be tested.",
-    apiLanguage: "Language",
-    apiPremiered: "Premiered",
-    apiGenres: "Genres",
-    apiNoRating: "No rating yet",
+    apiItems: "API items shown",
     footerTech: "Built with React JS, Tailwind CSS, Axios, and Public API.",
     footerRights: "(c) 2026 MovieVerse. All rights reserved.",
     genreAll: "All",
@@ -372,9 +183,6 @@ const translations = {
       "Sci-Fi": "Sci-Fi",
       Drama: "Drama",
       Crime: "Crime",
-      Animation: "Animation",
-      Comedy: "Comedy",
-      History: "History",
     },
     badges: {
       Trending: "Trending",
@@ -382,10 +190,6 @@ const translations = {
       "Mind Bender": "Mind Bender",
       "Critic Pick": "Critic Pick",
       New: "New",
-      Blockbuster: "Blockbuster",
-      "Fan Favorite": "Fan Favorite",
-      Epic: "Epic",
-      "Action Hit": "Action Hit",
     },
     summaries: {
       Avengers:
@@ -398,31 +202,9 @@ const translations = {
         "A failed comedian slowly descends into madness and becomes Gotham City's infamous Joker.",
       "The Batman":
         "Batman uncovers corruption in Gotham City while pursuing the Riddler, a serial killer targeting elites.",
-      "Dune: Part Two":
-        "Paul Atreides unites with Chani and the Fremen while seeking revenge against those who destroyed his family.",
-      "Inside Out 2":
-        "Riley enters her teenage years as new emotions arrive and shake up headquarters.",
-      "Deadpool & Wolverine":
-        "Deadpool teams up with Wolverine for a chaotic mission that could change their universe.",
-      "Godzilla x Kong":
-        "Godzilla and Kong face a colossal hidden threat that challenges the survival of both monsters and humanity.",
-      Furiosa:
-        "Young Furiosa is taken from the Green Place and must survive a brutal wasteland ruled by warlords.",
-      "Kingdom of the Planet of the Apes":
-        "Generations after Caesar, a young ape questions a new empire and begins a journey that changes the future.",
-      Oppenheimer:
-        "J. Robert Oppenheimer leads the Manhattan Project and faces the consequences of creating the atomic bomb.",
-      "Spider-Man: Across the Spider-Verse":
-        "Miles Morales travels across the multiverse and clashes with a team of Spider-People over how to save everyone.",
-      "Mission: Impossible - Dead Reckoning":
-        "Ethan Hunt and his IMF team race against time to stop a dangerous weapon from falling into the wrong hands.",
-      "Guardians of the Galaxy Vol. 3":
-        "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
     },
   },
 }
-
-const stripHtml = (value) => value?.replace(/<[^>]*>/g, "") || "-"
 
 function Home({ theme, language, activePage, onNavigate }) {
   const isDark = theme === "dark"
@@ -430,52 +212,28 @@ function Home({ theme, language, activePage, onNavigate }) {
   const getGenreLabel = (genre) => text.genres[genre] || genre
 
   const [apiItems, setApiItems] = useState([])
-  const [apiLoading, setApiLoading] = useState(false)
+  const [apiLoading, setApiLoading] = useState(true)
   const [apiError, setApiError] = useState(false)
-  const [apiFetched, setApiFetched] = useState(false)
   const [search, setSearch] = useState("")
   const [activeGenre, setActiveGenre] = useState("All")
   const [onlyHighRated, setOnlyHighRated] = useState(false)
   const [selectedMovie, setSelectedMovie] = useState(null)
 
-useEffect(() => {
-  if (activePage !== "api" || apiFetched) return
-
-  let isMounted = true
-
-  setApiLoading(true)
-
-  const minimumLoadingTime = new Promise((resolve) =>
-    setTimeout(resolve, 1200)
-  )
-
-  Promise.all([
-    axios.get("https://api.tvmaze.com/shows?page=1"),
-    minimumLoadingTime,
-  ])
-    .then(([response]) => {
-      if (!isMounted) return
-
-      setApiItems(response.data.slice(0, 10))
-      setApiError(false)
-    })
-    .catch(() => {
-      if (!isMounted) return
-
-      setApiItems(fallbackShows)
-      setApiError(true)
-    })
-    .finally(() => {
-      if (!isMounted) return
-
-      setApiLoading(false)
-      setApiFetched(true)
-    })
-
-  return () => {
-    isMounted = false
-  }
-}, [activePage, apiFetched])
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts?_limit=5")
+      .then((response) => {
+        setApiItems(response.data.slice(0, 10))
+        setApiError(false)
+      })
+      .catch(() => {
+        setApiItems(fallbackPosts)
+        setApiError(true)
+      })
+      .finally(() => {
+        setApiLoading(false)
+      })
+  }, [])
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
@@ -483,10 +241,6 @@ useEffect(() => {
   )
 
   const featuredMovie = movieData[0]
-  const trendingMovies = useMemo(
-    () => [...movieData].sort((firstMovie, secondMovie) => secondMovie.rating.average - firstMovie.rating.average).slice(0, 5),
-    []
-  )
 
   const filteredMovies = movieData.filter((movie) => {
     const matchesSearch = movie.name.toLowerCase().includes(search.toLowerCase())
@@ -583,35 +337,19 @@ useEffect(() => {
           </div>
 
           <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            <InfoCard value="15+" label={text.totalMovies} color="text-yellow-400" className={cardClass} />
+            <InfoCard value="5+" label={text.totalMovies} color="text-yellow-400" className={cardClass} />
             <InfoCard value="HD" label={text.officialTrailer} color="text-red-400" className={cardClass} />
-            <InfoCard value={text.freeShort} label={text.freeAccess} color="text-green-400" className={cardClass} />
+            <InfoCard value="10" label={text.apiItems} color="text-green-400" className={cardClass} />
           </div>
 
-          <div>
-            <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}>
-                  {text.explore}
-                </p>
-                <h2 className="text-3xl font-extrabold md:text-4xl">{text.popularThisWeek}</h2>
-              </div>
-              <p className={`max-w-xl text-sm leading-relaxed ${subtleText}`}>{text.trendingSubtitle}</p>
-            </div>
-
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {trendingMovies.map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  text={text}
-                  isDark={isDark}
-                  getGenreLabel={getGenreLabel}
-                  onSelect={setSelectedMovie}
-                  compact
-                />
-              ))}
-            </div>
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => onNavigate("api")}
+              className="rounded-full bg-red-500 px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-red-500/20 transition hover:scale-105 hover:bg-red-600"
+            >
+              {text.openApi}
+            </button>
           </div>
         </section>
       )}
@@ -723,7 +461,7 @@ useEffect(() => {
 
           <div className={`mb-8 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl ${cardClass}`}>
             <p className={`text-sm font-bold uppercase tracking-[0.2em] ${subtleText}`}>{text.apiSource}</p>
-            <p className="mt-2 font-mono text-sm">https://api.tvmaze.com/shows?page=1</p>
+            <p className="mt-2 font-mono text-sm">https://jsonplaceholder.typicode.com/posts?_limit=10</p>
           </div>
 
           {apiLoading ? (
@@ -746,35 +484,13 @@ useEffect(() => {
               )}
 
               <div className="grid gap-6 md:grid-cols-2">
-                {apiItems.map((show) => (
-                  <article key={show.id} className={`rounded-3xl border p-6 shadow-xl transition hover:-translate-y-1 hover:shadow-red-500/20 ${cardClass}`}>
-                    <div className="mb-4 flex flex-wrap items-center gap-2">
-                      <span className="inline-flex rounded-full bg-red-500 px-3 py-1 text-xs font-bold text-white">
-                        TVMaze #{show.id}
-                      </span>
-                      <span className="inline-flex rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-black">
-                        {show.rating?.average ? `${text.rating} ${show.rating.average}` : text.apiNoRating}
-                      </span>
-                    </div>
-
-                    <h2 className="mb-3 text-xl font-extrabold">{show.name}</h2>
-
-                    <div className={`mb-4 grid gap-2 text-sm ${mutedText}`}>
-                      <p>
-                        <span className="font-bold">{text.apiLanguage}:</span> {show.language || "-"}
-                      </p>
-                      <p>
-                        <span className="font-bold">{text.apiPremiered}:</span> {show.premiered || "-"}
-                      </p>
-                      <p>
-                        <span className="font-bold">{text.apiGenres}:</span>{" "}
-                        {show.genres?.length ? show.genres.join(", ") : "-"}
-                      </p>
-                    </div>
-
-                    <p className={`line-clamp-3 leading-relaxed ${mutedText}`}>
-                      {stripHtml(show.summary)}
-                    </p>
+                {apiItems.map((item) => (
+                  <article key={item.id} className={`rounded-3xl border p-6 shadow-xl transition hover:-translate-y-1 hover:shadow-red-500/20 ${cardClass}`}>
+                    <span className="mb-4 inline-flex rounded-full bg-red-500 px-3 py-1 text-xs font-bold text-white">
+                      ID #{item.id}
+                    </span>
+                    <h2 className="mb-3 text-xl font-extrabold capitalize">{item.title}</h2>
+                    <p className={`leading-relaxed ${mutedText}`}>{item.body}</p>
                   </article>
                 ))}
               </div>
@@ -817,7 +533,7 @@ function InfoCard({ value, label, color, className }) {
   )
 }
 
-function MovieCard({ movie, text, isDark, getGenreLabel, onSelect, compact = false }) {
+function MovieCard({ movie, text, isDark, getGenreLabel, onSelect }) {
   return (
     <article
       className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
@@ -828,23 +544,21 @@ function MovieCard({ movie, text, isDark, getGenreLabel, onSelect, compact = fal
         <img
           src={movie.image.medium}
           alt={movie.name}
-          className={`${compact ? "h-[360px]" : "h-[380px]"} w-full object-cover transition duration-500 group-hover:scale-110`}
+          className="h-[380px] w-full object-cover transition duration-500 group-hover:scale-110"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
 
-        <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-2">
-          <div className="max-w-[58%] truncate rounded-full bg-red-500 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide text-white shadow-lg">
-            {text.badges[movie.badge]}
-          </div>
+        <div className="absolute left-4 top-4 rounded-full bg-red-500 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg">
+          {text.badges[movie.badge]}
+        </div>
 
-          <div className="shrink-0 rounded-full bg-black/75 px-3 py-2 text-xs font-bold text-white shadow-lg backdrop-blur-lg">
-            {text.rating} {movie.rating.average}
-          </div>
+        <div className="absolute right-4 top-4 rounded-full bg-black/70 px-4 py-2 text-sm font-semibold text-white backdrop-blur-lg">
+          {text.rating} {movie.rating.average}
         </div>
       </div>
 
-      <div className={compact ? "p-4" : "p-5"}>
+      <div className="p-5">
         <h2 className="mb-4 line-clamp-1 text-2xl font-bold">{movie.name}</h2>
 
         <div className="mb-4 flex flex-wrap gap-2">
