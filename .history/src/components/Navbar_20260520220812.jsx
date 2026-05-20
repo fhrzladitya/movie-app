@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-
 const navText = {
   id: {
     pages: {
@@ -31,41 +29,6 @@ function Navbar({
   const text = navText[language]
   const isDark = theme === "dark"
 
-  // =========================
-  // SCROLL ANIMATION
-  // =========================
-  const [showNavbar, setShowNavbar] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-
-      // selalu tampil di atas
-      if (currentScrollY <= 10) {
-        setShowNavbar(true)
-      }
-
-      // scroll ke bawah = hide
-      else if (currentScrollY > lastScrollY) {
-        setShowNavbar(false)
-      }
-
-      // scroll ke atas = show
-      else {
-        setShowNavbar(true)
-      }
-
-      setLastScrollY(currentScrollY)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [lastScrollY])
-
   const navButtonClass = (page) =>
     `
     relative
@@ -94,14 +57,7 @@ function Navbar({
         fixed inset-x-0 top-0 z-40
         border-b
         backdrop-blur-xl
-        transition-all duration-500
-
-        ${
-          showNavbar
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0"
-        }
-
+        transition-colors duration-300
         ${
           isDark
             ? "border-white/10 bg-black/40 text-white"

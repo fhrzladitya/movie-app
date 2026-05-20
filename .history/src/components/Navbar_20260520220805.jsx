@@ -31,9 +31,9 @@ function Navbar({
   const text = navText[language]
   const isDark = theme === "dark"
 
-  // =========================
-  // SCROLL ANIMATION
-  // =========================
+  // ======================
+  // SCROLL NAVBAR
+  // ======================
   const [showNavbar, setShowNavbar] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
@@ -41,18 +41,11 @@ function Navbar({
     const handleScroll = () => {
       const currentScrollY = window.scrollY
 
-      // selalu tampil di atas
-      if (currentScrollY <= 10) {
+      if (currentScrollY <= 20) {
         setShowNavbar(true)
-      }
-
-      // scroll ke bawah = hide
-      else if (currentScrollY > lastScrollY) {
+      } else if (currentScrollY > lastScrollY) {
         setShowNavbar(false)
-      }
-
-      // scroll ke atas = show
-      else {
+      } else {
         setShowNavbar(true)
       }
 
@@ -68,30 +61,31 @@ function Navbar({
 
   const navButtonClass = (page) =>
     `
-    relative
     rounded-full
-    transition-all
-    duration-300
+    transition-all duration-300
     whitespace-nowrap
+
     px-3 py-2
     text-sm
     font-semibold
+
     md:px-4
-    md:py-2
+    md:py-2.5
     md:text-base
+
     ${
       activePage === page
         ? "bg-red-500 text-white shadow-lg shadow-red-500/25"
         : isDark
-        ? "text-gray-200 hover:bg-white/10 hover:text-yellow-300"
-        : "text-slate-700 hover:bg-white/80 hover:text-red-500"
+        ? "hover:bg-white/10 hover:text-yellow-300"
+        : "hover:bg-white/80 hover:text-red-500"
     }
   `
 
   return (
     <header
       className={`
-        fixed inset-x-0 top-0 z-40
+        fixed inset-x-0 top-0 z-50
         border-b
         backdrop-blur-xl
         transition-all duration-500
@@ -109,95 +103,11 @@ function Navbar({
         }
       `}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-4 md:px-5">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-5">
 
-        {/* MOBILE */}
-        <div className="flex flex-col gap-3 py-3 md:hidden">
-
-          {/* LOGO */}
-          <button
-            type="button"
-            onClick={() => onNavigate("home")}
-            className="
-              self-start
-              text-[2rem]
-              leading-none
-              font-extrabold
-              tracking-wide
-              bg-gradient-to-r
-              from-red-500
-              via-orange-400
-              to-yellow-300
-              bg-clip-text
-              text-transparent
-            "
-          >
-            MovieVerse
-          </button>
-
-          {/* NAV + TOGGLE */}
-          <div className="flex items-center justify-between gap-3">
-
-            {/* MENU */}
-            <nav className="flex items-center gap-2">
-              {Object.entries(text.pages).map(([page, label]) => (
-                <button
-                  key={page}
-                  type="button"
-                  onClick={() => onNavigate(page)}
-                  className={navButtonClass(page)}
-                >
-                  {label}
-                </button>
-              ))}
-            </nav>
-
-            {/* TOGGLES */}
-            <div className="flex items-center gap-2 shrink-0">
-
-              {/* LANGUAGE */}
-              <button
-                type="button"
-                onClick={onToggleLanguage}
-                className={`
-                  flex h-9 w-9 items-center justify-center
-                  rounded-full border
-                  text-xs font-bold
-                  transition-all duration-300
-                  ${
-                    isDark
-                      ? "border-white/15 bg-white/10 hover:bg-white/20"
-                      : "border-slate-200 bg-white/80 hover:bg-white"
-                  }
-                `}
-              >
-                {text.languageButton}
-              </button>
-
-              {/* THEME */}
-              <button
-                type="button"
-                onClick={onToggleTheme}
-                className={`
-                  flex h-9 w-9 items-center justify-center
-                  rounded-full border
-                  text-sm
-                  transition-all duration-300
-                  ${
-                    isDark
-                      ? "border-white/15 bg-white/10 hover:bg-white/20"
-                      : "border-slate-200 bg-white/80 hover:bg-white"
-                  }
-                `}
-              >
-                {theme === "dark" ? "☀️" : "🌙"}
-              </button>
-
-            </div>
-          </div>
-        </div>
-
+        {/* ========================= */}
         {/* DESKTOP */}
+        {/* ========================= */}
         <div className="hidden md:flex items-center justify-between py-4">
 
           {/* LOGO */}
@@ -219,10 +129,10 @@ function Navbar({
             MovieVerse
           </button>
 
-          {/* RIGHT */}
+          {/* RIGHT SIDE */}
           <div className="flex items-center gap-3">
 
-            {/* NAV */}
+            {/* MENU */}
             <nav className="flex items-center gap-2 text-sm font-semibold">
               {Object.entries(text.pages).map(([page, label]) => (
                 <button
@@ -244,7 +154,9 @@ function Navbar({
                 flex h-11 w-11 items-center justify-center
                 rounded-full border
                 text-sm font-bold
-                transition-all duration-300
+                transition
+                shrink-0
+
                 ${
                   isDark
                     ? "border-white/15 bg-white/10 hover:bg-white/20"
@@ -263,7 +175,9 @@ function Navbar({
                 flex h-11 w-11 items-center justify-center
                 rounded-full border
                 text-sm
-                transition-all duration-300
+                transition
+                shrink-0
+
                 ${
                   isDark
                     ? "border-white/15 bg-white/10 hover:bg-white/20"
@@ -277,6 +191,103 @@ function Navbar({
           </div>
         </div>
 
+        {/* ========================= */}
+        {/* MOBILE */}
+        {/* ========================= */}
+        <div className="md:hidden py-3">
+
+          {/* TOP */}
+          <div className="flex items-center justify-between gap-3">
+
+            {/* LOGO */}
+            <button
+              type="button"
+              onClick={() => onNavigate("home")}
+              className="
+                flex-shrink-0
+                text-[1.9rem]
+                leading-none
+                font-extrabold
+                tracking-tight
+                bg-gradient-to-r
+                from-red-500
+                via-orange-400
+                to-yellow-300
+                bg-clip-text
+                text-transparent
+              "
+            >
+              MovieVerse
+            </button>
+
+            {/* TOGGLES FIXED */}
+            <div className="flex flex-shrink-0 items-center gap-2">
+
+              {/* LANGUAGE */}
+              <button
+                type="button"
+                onClick={onToggleLanguage}
+                className={`
+                  flex h-10 w-10 items-center justify-center
+                  rounded-full border
+                  text-sm font-bold
+                  transition
+                  shrink-0
+
+                  ${
+                    isDark
+                      ? "border-white/15 bg-white/10 hover:bg-white/20"
+                      : "border-slate-200 bg-white/80 hover:bg-white"
+                  }
+                `}
+              >
+                {text.languageButton}
+              </button>
+
+              {/* THEME */}
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className={`
+                  flex h-10 w-10 items-center justify-center
+                  rounded-full border
+                  text-sm
+                  transition
+                  shrink-0
+
+                  ${
+                    isDark
+                      ? "border-white/15 bg-white/10 hover:bg-white/20"
+                      : "border-slate-200 bg-white/80 hover:bg-white"
+                  }
+                `}
+              >
+                {theme === "dark" ? "☀️" : "🌙"}
+              </button>
+
+            </div>
+          </div>
+
+          {/* MENU */}
+          <div className="mt-3 overflow-x-auto scrollbar-hide">
+
+            <nav className="flex min-w-max items-center gap-2 text-sm font-semibold">
+
+              {Object.entries(text.pages).map(([page, label]) => (
+                <button
+                  key={page}
+                  type="button"
+                  onClick={() => onNavigate(page)}
+                  className={navButtonClass(page)}
+                >
+                  {label}
+                </button>
+              ))}
+
+            </nav>
+          </div>
+
+        </div>
       </div>
     </header>
   )
