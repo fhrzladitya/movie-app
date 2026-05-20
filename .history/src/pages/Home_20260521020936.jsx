@@ -556,20 +556,28 @@ function Home({ theme, language, activePage, onNavigate }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
+useEffect(() => {
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual"
+  }
 
-    window.scrollTo(0, 80);
+  document.body.style.overflow = "hidden"
 
-    setTimeout(() => {
+  window.scrollTo(0, 180)
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+      })
+
+      setTimeout(() => {
+        document.body.style.overflow = ""
+      }, 1000)
+    })
+  })
+}, [])
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],

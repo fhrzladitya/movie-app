@@ -469,6 +469,7 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [recentSearches, setRecentSearches] = useState([]);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [visibleCards, setVisibleCards] = useState([]);
 
   useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
@@ -516,6 +517,31 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
+    const cards = document.querySelectorAll(".movie-card");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) => [
+              ...new Set([...prev, entry.target.dataset.id]),
+            ]);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activePage]);
+
+  useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
   }, [recentSearches]);
 
@@ -554,21 +580,6 @@ function Home({ theme, language, activePage, onNavigate }) {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
   }, []);
 
   const genres = useMemo(
@@ -894,7 +905,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
-                  compact
+                  isVisible={visibleCards.includes(String(movie.id))}
                 />
               ))}
             </div>
@@ -1325,14 +1336,36 @@ function MovieCard({
   getGenreLabel,
   onSelect,
   compact = false,
+  isVisible,
 }) {
   return (
     <article
-      className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
-        isDark
-          ? "border-white/10 bg-gray-900"
-          : "border-slate-200 bg-transparent"
-      }`}
+      data-id={movie.id}
+      className={`
+    movie-card
+    group
+    overflow-hidden
+    rounded-3xl
+    border
+    shadow-2xl
+    backdrop-blur-xl
+    transition-all
+    duration-700
+
+    ${
+      isVisible
+        ? "opacity-100 translate-y-0 scale-100"
+        : "opacity-0 translate-y-10 scale-95"
+    }
+
+    md:hover:-translate-y-3
+    md:hover:scale-100
+    md:hover:shadow-red-500/20
+
+    ${
+      isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-transparent"
+    }
+  `}
     >
       <div className="relative overflow-hidden">
         <img

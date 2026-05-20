@@ -561,14 +561,22 @@ function Home({ theme, language, activePage, onNavigate }) {
       window.history.scrollRestoration = "manual";
     }
 
-    window.scrollTo(0, 80);
+    document.body.style.overflow = "hidden";
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
+    window.scrollTo(0, 180);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
+        setTimeout(() => {
+          document.body.style.overflow = "";
+        }, 1000);
       });
-    }, 100);
+    });
   }, []);
 
   const genres = useMemo(

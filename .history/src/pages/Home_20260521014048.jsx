@@ -466,9 +466,13 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchCommitted, setSearchCommitted] = useState(false);
   const [lastSearch, setLastSearch] = useState("");
-  const [recentSearches, setRecentSearches] = useState([]);
+  const [recentSearches, setRecentSearches] = useState(() => {
+    return JSON.parse(localStorage.getItem("recent-searches")) || [];
+  });
+  const movieSectionRef = useRef(null);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [visibleCards, setVisibleCards] = useState([]);
 
   useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
@@ -510,10 +514,38 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, [activePage, apiFetched]);
 
   useEffect(() => {
-    const savedSearches =
-      JSON.parse(localStorage.getItem("recent-searches")) || [];
-    setRecentSearches(savedSearches);
-  }, []);
+    const cards = document.querySelectorAll(".movie-card");
+
+    // reset visible cards saat pindah page
+    setVisibleCards([]);
+
+    // kalau tidak ada card langsung stop
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = Number(entry.target.dataset.id);
+
+            setVisibleCards((prev) => {
+              if (prev.includes(id)) return prev;
+              return [...prev, id];
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.05,
+      },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activePage, filteredMovies.length]);
 
   useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
@@ -557,19 +589,8 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [activePage]);
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
@@ -870,7 +891,7 @@ function Home({ theme, language, activePage, onNavigate }) {
 
           <div>
             <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
+              <div ref={movieSectionRef}>
                 <p
                   className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}
                 >
@@ -894,7 +915,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
-                  compact
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1007,6 +1028,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1325,20 +1347,47 @@ function MovieCard({
   getGenreLabel,
   onSelect,
   compact = false,
+  isVisible = true,
 }) {
   return (
     <article
-      className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
-        isDark
-          ? "border-white/10 bg-gray-900"
-          : "border-slate-200 bg-transparent"
-      }`}
+      data-id={movie.id}
+      className={`
+        movie-card
+        group
+        overflow-hidden
+        rounded-3xl
+        border
+        shadow-2xl
+        backdrop-blur-xl
+        transition-all
+        duration-700
+
+        ${
+          isVisible
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 translate-y-6 scale-95"
+        }
+
+        hover:-translate-y-3
+        hover:shadow-red-500/20
+
+        ${isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-white"}
+      `}
     >
       <div className="relative overflow-hidden">
         <img
           src={movie.image.medium}
           alt={movie.name}
-          className={`${compact ? "h-[360px]" : "h-[380px]"} w-full object-cover transition duration-700 ease-out group-hover:scale-125 group-hover:rotate-1`}
+          className={`
+            ${compact ? "h-[360px]" : "h-[380px]"}
+            w-full
+            object-cover
+            transition
+            duration-700
+            ease-out
+            group-hover:scale-110
+          `}
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
@@ -1371,7 +1420,9 @@ function MovieCard({
         </div>
 
         <p
-          className={`mb-6 line-clamp-3 text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}
+          className={`mb-6 line-clamp-3 text-sm leading-relaxed ${
+            isDark ? "text-gray-300" : "text-slate-600"
+          }`}
         >
           {text.summaries[movie.name]}
         </p>
@@ -1379,7 +1430,19 @@ function MovieCard({
         <button
           type="button"
           onClick={() => onSelect(movie)}
-          className="w-full rounded-2xl bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 py-3 font-bold text-white transition hover:scale-105"
+          className="
+            w-full
+            rounded-2xl
+            bg-gradient-to-r
+            from-red-500
+            via-orange-500
+            to-yellow-500
+            py-3
+            font-bold
+            text-white
+            transition
+            hover:scale-105
+          "
         >
           {text.watchDetail}
         </button>

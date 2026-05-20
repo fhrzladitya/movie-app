@@ -556,21 +556,6 @@ function Home({ theme, language, activePage, onNavigate }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
-
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
     [],
@@ -999,17 +984,21 @@ function Home({ theme, language, activePage, onNavigate }) {
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {filteredMovies.map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  text={text}
-                  isDark={isDark}
-                  getGenreLabel={getGenreLabel}
-                  onSelect={setSelectedMovie}
-                />
-              ))}
-            </div>
+  {filteredMovies.map((movie, index) => (
+    <div
+      key={movie.id}
+      className={`mobile-fade mobile-fade-delay-${index % 5}`}
+    >
+      <MovieCard
+        movie={movie}
+        text={text}
+        isDark={isDark}
+        getGenreLabel={getGenreLabel}
+        onSelect={setSelectedMovie}
+      />
+    </div>
+  ))}
+</div>
           )}
         </section>
       )}
@@ -1476,6 +1465,40 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
       transform: scale(1.18);
     }
   }
-`}</style>;
+
+  @keyframes fadeUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-fade {
+      animation: fadeUpMobile 0.7s ease both;
+    }
+
+    .mobile-fade-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .mobile-fade-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .mobile-fade-delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    .mobile-fade-delay-4 {
+      animation-delay: 0.4s;
+    }
+  }
+`}</style>
 
 export default Home;

@@ -469,6 +469,7 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [recentSearches, setRecentSearches] = useState([]);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
@@ -556,20 +557,33 @@ function Home({ theme, language, activePage, onNavigate }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.dataset.id;
 
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
+          setVisibleItems((prev) => {
+            if (prev.includes(id)) return prev;
+            return [...prev, id];
+          });
+        }
       });
-    }, 100);
-  }, []);
+    },
+    {
+      threshold: 0.2,
+    },
+  );
+
+  const elements = document.querySelectorAll(".fade-scroll");
+
+  elements.forEach((el) => observer.observe(el));
+
+  return () => {
+    elements.forEach((el) => observer.unobserve(el));
+  };
+}, [filteredMovies]);
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
@@ -635,6 +649,7 @@ function Home({ theme, language, activePage, onNavigate }) {
           <div
             ref={heroRef}
             className={`
+    mobile-fade
     relative
     min-h-[720px]
     overflow-hidden
@@ -999,15 +1014,24 @@ function Home({ theme, language, activePage, onNavigate }) {
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {filteredMovies.map((movie) => (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  text={text}
-                  isDark={isDark}
-                  getGenreLabel={getGenreLabel}
-                  onSelect={setSelectedMovie}
-                />
+              {filteredMovies.map((movie, index) => (
+<div
+  key={movie.id}
+  data-id={String(movie.id)}
+  className={`
+    fade-scroll
+    ${visibleItems.includes(String(movie.id)) ? "fade-show" : ""}
+    fade-delay-${index % 5}
+  `}
+>
+                  <MovieCard
+                    movie={movie}
+                    text={text}
+                    isDark={isDark}
+                    getGenreLabel={getGenreLabel}
+                    onSelect={setSelectedMovie}
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -1474,6 +1498,49 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
 
     100% {
       transform: scale(1.18);
+    }
+  }
+
+  @keyframes fadeUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .fade-show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .fade-delay-4 {
+      transition-delay: 0.4s;
     }
   }
 `}</style>;

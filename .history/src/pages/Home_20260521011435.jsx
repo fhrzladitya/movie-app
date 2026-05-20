@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState, useRef } from "react";
-import axios from "axios";
+import { useEffect, useMemo, useState, useRef } from "react"
+import axios from "axios"
 
 const movieData = [
   {
@@ -8,8 +8,7 @@ const movieData = [
     badge: "Trending",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+      original: "https://image.tmdb.org/t/p/original/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
     },
     rating: { average: 8.7 },
     genres: ["Action", "Adventure"],
@@ -22,8 +21,7 @@ const movieData = [
     badge: "Top Rated",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      original: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
     },
     rating: { average: 9.0 },
     genres: ["Sci-Fi", "Drama"],
@@ -36,8 +34,7 @@ const movieData = [
     badge: "Mind Bender",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
+      original: "https://image.tmdb.org/t/p/original/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
     },
     rating: { average: 8.8 },
     genres: ["Action", "Sci-Fi"],
@@ -50,8 +47,7 @@ const movieData = [
     badge: "Critic Pick",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      original: "https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
     },
     rating: { average: 8.5 },
     genres: ["Crime", "Drama"],
@@ -64,8 +60,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+      original: "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg",
     },
     rating: { average: 8.3 },
     genres: ["Action", "Crime"],
@@ -78,8 +73,7 @@ const movieData = [
     badge: "Blockbuster",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      original: "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
     },
     rating: { average: 8.9 },
     genres: ["Sci-Fi", "Adventure"],
@@ -92,8 +86,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
+      original: "https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
     },
     rating: { average: 8.0 },
     genres: ["Animation", "Comedy"],
@@ -106,8 +99,7 @@ const movieData = [
     badge: "Fan Favorite",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+      original: "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
     },
     rating: { average: 8.1 },
     genres: ["Action", "Comedy"],
@@ -120,8 +112,7 @@ const movieData = [
     badge: "Epic",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
+      original: "https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
     },
     rating: { average: 7.2 },
     genres: ["Action", "Sci-Fi"],
@@ -134,8 +125,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
+      original: "https://image.tmdb.org/t/p/original/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
     },
     rating: { average: 7.6 },
     genres: ["Action", "Adventure"],
@@ -148,8 +138,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+      original: "https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
     },
     rating: { average: 7.3 },
     genres: ["Action", "Sci-Fi"],
@@ -162,8 +151,7 @@ const movieData = [
     badge: "Top Rated",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      original: "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
     },
     rating: { average: 8.6 },
     genres: ["Drama", "History"],
@@ -176,8 +164,7 @@ const movieData = [
     badge: "Fan Favorite",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+      original: "https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
     },
     rating: { average: 8.7 },
     genres: ["Animation", "Action"],
@@ -190,8 +177,7 @@ const movieData = [
     badge: "Action Hit",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+      original: "https://image.tmdb.org/t/p/original/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
     },
     rating: { average: 7.7 },
     genres: ["Action", "Adventure"],
@@ -204,15 +190,14 @@ const movieData = [
     badge: "Blockbuster",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+      original: "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
     },
     rating: { average: 8.0 },
     genres: ["Action", "Comedy"],
     summary:
       "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
   },
-];
+]
 
 const trailers = {
   Avengers: "https://www.youtube.com/embed/eOrNdBpGMv8",
@@ -225,15 +210,12 @@ const trailers = {
   "Deadpool & Wolverine": "https://www.youtube.com/embed/73_1biulkYk",
   "Godzilla x Kong": "https://www.youtube.com/embed/lV1OOlGwExM",
   Furiosa: "https://www.youtube.com/embed/XJMuhwVlca4",
-  "Kingdom of the Planet of the Apes":
-    "https://www.youtube.com/embed/XtFI7SNtVpY",
+  "Kingdom of the Planet of the Apes": "https://www.youtube.com/embed/XtFI7SNtVpY",
   Oppenheimer: "https://www.youtube.com/embed/uYPbbksJxIg",
-  "Spider-Man: Across the Spider-Verse":
-    "https://www.youtube.com/embed/cqGjhVJWtEg",
-  "Mission: Impossible - Dead Reckoning":
-    "https://www.youtube.com/embed/avz06PDqDbM",
+  "Spider-Man: Across the Spider-Verse": "https://www.youtube.com/embed/cqGjhVJWtEg",
+  "Mission: Impossible - Dead Reckoning": "https://www.youtube.com/embed/avz06PDqDbM",
   "Guardians of the Galaxy Vol. 3": "https://www.youtube.com/embed/u3V5KDHRQvk",
-};
+}
 
 const fallbackShows = [
   "Under the Dome",
@@ -249,14 +231,13 @@ const fallbackShows = [
 ].map((name, index) => ({
   id: index + 1,
   name,
-  genres:
-    index % 2 === 0 ? ["Drama", "Science-Fiction"] : ["Action", "Adventure"],
+  genres: index % 2 === 0 ? ["Drama", "Science-Fiction"] : ["Action", "Adventure"],
   rating: { average: 7 + index / 10 },
   language: "English",
   premiered: `201${index % 10}-01-01`,
   summary:
     "Fallback TV show data appears only when the TVMaze API cannot be reached during local development.",
-}));
+}))
 
 const translations = {
   id: {
@@ -272,8 +253,7 @@ const translations = {
     freeShort: "Gratis",
     explore: "Jelajahi Film",
     popularThisWeek: "Populer Minggu Ini",
-    trendingSubtitle:
-      "5 film favorit dengan rating dan tren terbaik di MovieVerse.",
+    trendingSubtitle: "5 film favorit dengan rating dan tren terbaik di MovieVerse.",
     movieFound: "film ditemukan",
     searchPlaceholder: "Cari film favoritmu...",
     highRated: "Hanya rating 8.7 ke atas",
@@ -288,14 +268,12 @@ const translations = {
       "Halaman ini mengambil 10 data show dari TVMaze API menggunakan Axios dan menampilkannya sebagai daftar film/series eksternal.",
     apiSource: "Sumber API",
     apiLoading: "Mengambil 10 data show dari TVMaze API...",
-    apiError:
-      "API sedang tidak tersedia, menampilkan data cadangan agar tampilan tetap bisa diuji.",
+    apiError: "API sedang tidak tersedia, menampilkan data cadangan agar tampilan tetap bisa diuji.",
     apiLanguage: "Bahasa",
     apiPremiered: "Tayang perdana",
     apiGenres: "Genre",
     apiNoRating: "Belum ada rating",
-    footerTech:
-      "Dibuat menggunakan React JS, Tailwind CSS, Axios, dan Public API.",
+    footerTech: "Dibuat menggunakan React JS, Tailwind CSS, Axios, dan Public API.",
     footerRights: "(c) 2026 MovieVerse. Semua hak dilindungi.",
     genreAll: "Semua",
     genres: {
@@ -365,8 +343,7 @@ const translations = {
     freeShort: "Free",
     explore: "Explore Movies",
     popularThisWeek: "Popular This Week",
-    trendingSubtitle:
-      "5 favorite movies with the strongest ratings and trend signals in MovieVerse.",
+    trendingSubtitle: "5 favorite movies with the strongest ratings and trend signals in MovieVerse.",
     movieFound: "movie found",
     searchPlaceholder: "Search your favorite movie...",
     highRated: "Only rating 8.7 and above",
@@ -381,8 +358,7 @@ const translations = {
       "This page fetches 10 shows from the TVMaze API using Axios and displays them as external movie/series data.",
     apiSource: "API Source",
     apiLoading: "Fetching 10 shows from the TVMaze API...",
-    apiError:
-      "The API is unavailable, showing fallback data so the interface can still be tested.",
+    apiError: "The API is unavailable, showing fallback data so the interface can still be tested.",
     apiLanguage: "Language",
     apiPremiered: "Premiered",
     apiGenres: "Genres",
@@ -444,182 +420,188 @@ const translations = {
         "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
     },
   },
-};
+}
 
-const stripHtml = (value) => value?.replace(/<[^>]*>/g, "") || "-";
+const stripHtml = (value) => value?.replace(/<[^>]*>/g, "") || "-"
 
 function Home({ theme, language, activePage, onNavigate }) {
-  const isDark = theme === "dark";
-  const text = translations[language];
-  const getGenreLabel = (genre) => text.genres[genre] || genre;
+  const isDark = theme === "dark"
+  const text = translations[language]
+  const getGenreLabel = (genre) => text.genres[genre] || genre
 
-  const [apiItems, setApiItems] = useState([]);
-  const [apiLoading, setApiLoading] = useState(false);
-  const [apiError, setApiError] = useState(false);
-  const [apiFetched, setApiFetched] = useState(false);
-  const [search, setSearch] = useState("");
-  const [activeGenre, setActiveGenre] = useState("All");
-  const [onlyHighRated, setOnlyHighRated] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchClose, setClosingSearch] = useState(false);
-  const [showSearchModal, setShowSearchModal] = useState(false);
-  const [searchCommitted, setSearchCommitted] = useState(false);
-  const [lastSearch, setLastSearch] = useState("");
-  const [recentSearches, setRecentSearches] = useState([]);
-  const heroRef = useRef(null);
-  const [scrollY, setScrollY] = useState(0);
+  const [apiItems, setApiItems] = useState([])
+  const [apiLoading, setApiLoading] = useState(false)
+  const [apiError, setApiError] = useState(false)
+  const [apiFetched, setApiFetched] = useState(false)
+  const [search, setSearch] = useState("")
+  const [activeGenre, setActiveGenre] = useState("All")
+  const [onlyHighRated, setOnlyHighRated] = useState(false)
+  const [selectedMovie, setSelectedMovie] = useState(null)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchClose, setClosingSearch] = useState(false)
+  const [showSearchModal, setShowSearchModal] = useState(false)
+  const [searchCommitted, setSearchCommitted] = useState(false)
+  const [lastSearch, setLastSearch] = useState("")
+  const [recentSearches, setRecentSearches] = useState([])
+  const heroRef = useRef(null)
+  const [scrollY, setScrollY] = useState(0)
+  const [visibleCards, setVisibleCards] = useState([]);
 
-  useEffect(() => {
-    if (activePage !== "api" || apiFetched) return;
+useEffect(() => {
+  if (activePage !== "api" || apiFetched) return
 
-    let isMounted = true;
+  let isMounted = true
 
-    setApiLoading(true);
+  setApiLoading(true)
 
-    const minimumLoadingTime = new Promise((resolve) =>
-      setTimeout(resolve, 1200),
-    );
+  const minimumLoadingTime = new Promise((resolve) =>
+    setTimeout(resolve, 1200)
+  )
 
-    Promise.all([
-      axios.get("https://api.tvmaze.com/shows?page=1"),
-      minimumLoadingTime,
-    ])
-      .then(([response]) => {
-        if (!isMounted) return;
+  Promise.all([
+    axios.get("https://api.tvmaze.com/shows?page=1"),
+    minimumLoadingTime,
+  ])
+    .then(([response]) => {
+      if (!isMounted) return
 
-        setApiItems(response.data.slice(0, 10));
-        setApiError(false);
-      })
-      .catch(() => {
-        if (!isMounted) return;
+      setApiItems(response.data.slice(0, 10))
+      setApiError(false)
+    })
+    .catch(() => {
+      if (!isMounted) return
 
-        setApiItems(fallbackShows);
-        setApiError(true);
-      })
-      .finally(() => {
-        if (!isMounted) return;
+      setApiItems(fallbackShows)
+      setApiError(true)
+    })
+    .finally(() => {
+      if (!isMounted) return
 
-        setApiLoading(false);
-        setApiFetched(true);
+      setApiLoading(false)
+      setApiFetched(true)
+    })
+
+  return () => {
+    isMounted = false
+  }
+}, [activePage, apiFetched])
+
+useEffect(() => {
+  const savedSearches = JSON.parse(localStorage.getItem("recent-searches")) || []
+  setRecentSearches(savedSearches)
+}, [])
+
+useEffect(() => {
+  
+  const cards = document.querySelectorAll(".movie-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = Number(entry.target.dataset.id);
+
+          setVisibleCards((prev) => {
+            if (prev.includes(id)) return prev;
+            return [...prev, id];
+          });
+        }
       });
+    },
+    {
+      threshold: 0.15,
+    },
+  );
 
-    return () => {
-      isMounted = false;
-    };
-  }, [activePage, apiFetched]);
+  cards.forEach((card) => observer.observe(card));
 
-  useEffect(() => {
-    const savedSearches =
-      JSON.parse(localStorage.getItem("recent-searches")) || [];
-    setRecentSearches(savedSearches);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
-  }, [recentSearches]);
-
-  const handleSearchChange = (value) => {
-    setSearch(value);
+  return () => {
+    observer.disconnect();
   };
+}, [activePage]);
 
-  const commitSearch = (value) => {
-    const cleaned = value.trim();
-    if (!cleaned) return;
+useEffect(() => {
+  localStorage.setItem("recent-searches", JSON.stringify(recentSearches))
+}, [recentSearches])
 
-    setLastSearch(cleaned);
-    setSearchCommitted(true);
-    setSearch(cleaned);
+const handleSearchChange = (value) => {
+  setSearch(value)
+}
 
-    setRecentSearches((prev) => {
-      const updated = [
-        cleaned,
-        ...prev.filter((i) => i.toLowerCase() !== cleaned.toLowerCase()),
-      ];
-      return updated.slice(0, 5);
-    });
-  };
+const commitSearch = (value) => {
+  const cleaned = value.trim()
+  if (!cleaned) return
 
-  const exitSearchMode = () => {
-    setShowSearchModal(false);
-    setSearchCommitted(false);
-    setSearch("");
-  };
+  setLastSearch(cleaned)
+  setSearchCommitted(true)
+  setSearch(cleaned)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+  setRecentSearches(prev => {
+    const updated = [
+      cleaned,
+      ...prev.filter(i => i.toLowerCase() !== cleaned.toLowerCase())
+    ]
+    return updated.slice(0, 5)
+  })
+}
 
-    window.addEventListener("scroll", handleScroll);
+const exitSearchMode = () => {
+  setShowSearchModal(false)
+  setSearchCommitted(false)
+  setSearch("")
+}
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+useEffect(() => {
+  const handleScroll = () => {
+    setScrollY(window.scrollY)
+  }
 
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
+  window.addEventListener("scroll", handleScroll)
 
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+  return () => window.removeEventListener("scroll", handleScroll)
+}, [])
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
-    [],
-  );
+    []
+  )
 
-  const featuredMovie = movieData[0];
+  const featuredMovie = movieData[0]
   const trendingMovies = useMemo(
-    () =>
-      [...movieData]
-        .sort(
-          (firstMovie, secondMovie) =>
-            secondMovie.rating.average - firstMovie.rating.average,
-        )
-        .slice(0, 5),
-    [],
-  );
+    () => [...movieData].sort((firstMovie, secondMovie) => secondMovie.rating.average - firstMovie.rating.average).slice(0, 5),
+    []
+  )
 
-  const closeSearchModal = () => {
-    setClosingSearch(true);
+const closeSearchModal = () => {
+  setClosingSearch(true)
 
-    setTimeout(() => {
-      setShowSearchModal(false);
-      setClosingSearch(false);
-    }, 200);
-  };
+  setTimeout(() => {
+    setShowSearchModal(false)
+    setClosingSearch(false)
+  }, 200)
+}
 
   const filteredMovies = movieData.filter((movie) => {
-    const matchesSearch = movie.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchesGenre =
-      activeGenre === "All" || movie.genres.includes(activeGenre);
-    const matchesRating = !onlyHighRated || movie.rating.average >= 8.7;
+    
+    const matchesSearch = movie.name.toLowerCase().includes(search.toLowerCase())
+    const matchesGenre = activeGenre === "All" || movie.genres.includes(activeGenre)
+    const matchesRating = !onlyHighRated || movie.rating.average >= 8.7
 
-    return matchesSearch && matchesGenre && matchesRating;
-  });
+    return matchesSearch && matchesGenre && matchesRating
+  })
 
   const searchResults = movieData.filter((movie) =>
-    movie.name.toLowerCase().includes(search.toLowerCase()),
-  );
-
+    movie.name.toLowerCase().includes(search.toLowerCase())
+  )
+  
   const pageBackground = isDark
     ? "bg-[#050505] text-white"
-    : "bg-[#f3f4f6] text-slate-950";
+    : "bg-[#f3f4f6] text-slate-950"
   const cardClass = isDark
     ? "border-white/10 bg-gray-900"
-    : "border-slate-200 bg-transparent";
-  const mutedText = isDark ? "text-gray-300" : "text-slate-600";
-  const subtleText = isDark ? "text-gray-400" : "text-slate-500";
+    : "border-slate-200 bg-transparent"
+  const mutedText = isDark ? "text-gray-300" : "text-slate-600"
+  const subtleText = isDark ? "text-gray-400" : "text-slate-500"
 
   return (
     <main
@@ -894,7 +876,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
-                  compact
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1007,6 +989,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1309,13 +1292,11 @@ function Home({ theme, language, activePage, onNavigate }) {
 
 function InfoCard({ value, label, color, className }) {
   return (
-    <article
-      className={`rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition hover:scale-105 ${className}`}
-    >
+    <article className={`rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition hover:scale-105 ${className}`}>
       <h3 className={`mb-2 text-4xl font-bold ${color}`}>{value}</h3>
       <p>{label}</p>
     </article>
-  );
+  )
 }
 
 function MovieCard({
@@ -1325,14 +1306,36 @@ function MovieCard({
   getGenreLabel,
   onSelect,
   compact = false,
+  isVisible = true,
 }) {
   return (
     <article
-      className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
-        isDark
-          ? "border-white/10 bg-gray-900"
-          : "border-slate-200 bg-transparent"
-      }`}
+      data-id={movie.id}
+      className={`
+    movie-card
+    group
+    overflow-hidden
+    rounded-3xl
+    border
+    shadow-2xl
+    backdrop-blur-xl
+    transition-all
+    duration-700
+
+    ${
+      isVisible
+        ? "opacity-100 translate-y-0 scale-100"
+        : "opacity-0 translate-y-10 scale-95"
+    }
+
+    md:hover:-translate-y-3
+    md:hover:scale-100
+    md:hover:shadow-red-500/20
+
+    ${
+      isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-transparent"
+    }
+  `}
     >
       <div className="relative overflow-hidden">
         <img
@@ -1397,9 +1400,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
       <article
         onClick={(event) => event.stopPropagation()}
         className={`relative my-10 w-full max-w-5xl overflow-hidden rounded-3xl border shadow-2xl ${
-          isDark
-            ? "border-white/10 bg-gray-900"
-            : "border-slate-200 bg-white text-slate-950"
+          isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-white text-slate-950"
         }`}
       >
         <button
@@ -1420,9 +1421,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
 
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <h2 className="mb-4 text-3xl font-extrabold md:text-5xl">
-              {movie.name}
-            </h2>
+            <h2 className="mb-4 text-3xl font-extrabold md:text-5xl">{movie.name}</h2>
 
             <div className="flex flex-wrap gap-3">
               <span className="rounded-full bg-yellow-500 px-4 py-1 font-bold text-black">
@@ -1430,10 +1429,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
               </span>
 
               {movie.genres.map((genre) => (
-                <span
-                  key={genre}
-                  className="rounded-full bg-red-500/80 px-4 py-1 text-sm"
-                >
+                <span key={genre} className="rounded-full bg-red-500/80 px-4 py-1 text-sm">
                   {getGenreLabel(genre)}
                 </span>
               ))}
@@ -1444,9 +1440,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
         <div className="p-6 md:p-10">
           <h3 className="mb-5 text-2xl font-bold">{text.movieSummary}</h3>
 
-          <p
-            className={`mb-10 leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}
-          >
+          <p className={`mb-10 leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}>
             {text.summaries[movie.name]}
           </p>
 
@@ -1463,7 +1457,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
         </div>
       </article>
     </div>
-  );
+  )
 }
 
 <style jsx global>{`
@@ -1476,6 +1470,6 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
       transform: scale(1.18);
     }
   }
-`}</style>;
+`}</style>
 
-export default Home;
+export default Home

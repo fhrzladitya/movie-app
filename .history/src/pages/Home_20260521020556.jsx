@@ -557,19 +557,11 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // bisa diganti "smooth"
+    });
+  }, [activePage]);
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],

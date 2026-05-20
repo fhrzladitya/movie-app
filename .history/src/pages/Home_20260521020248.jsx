@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState, useRef } from "react";
-import axios from "axios";
+import { useEffect, useMemo, useState, useRef } from "react"
+import axios from "axios"
 
 const movieData = [
   {
@@ -8,8 +8,7 @@ const movieData = [
     badge: "Trending",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+      original: "https://image.tmdb.org/t/p/original/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
     },
     rating: { average: 8.7 },
     genres: ["Action", "Adventure"],
@@ -22,8 +21,7 @@ const movieData = [
     badge: "Top Rated",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      original: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
     },
     rating: { average: 9.0 },
     genres: ["Sci-Fi", "Drama"],
@@ -36,8 +34,7 @@ const movieData = [
     badge: "Mind Bender",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
+      original: "https://image.tmdb.org/t/p/original/8IB2e4r4oVhHnANbnm7O3Tj6tF8.jpg",
     },
     rating: { average: 8.8 },
     genres: ["Action", "Sci-Fi"],
@@ -50,8 +47,7 @@ const movieData = [
     badge: "Critic Pick",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      original: "https://image.tmdb.org/t/p/original/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
     },
     rating: { average: 8.5 },
     genres: ["Crime", "Drama"],
@@ -64,8 +60,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+      original: "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg",
     },
     rating: { average: 8.3 },
     genres: ["Action", "Crime"],
@@ -78,8 +73,7 @@ const movieData = [
     badge: "Blockbuster",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      original: "https://image.tmdb.org/t/p/original/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
     },
     rating: { average: 8.9 },
     genres: ["Sci-Fi", "Adventure"],
@@ -92,8 +86,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
+      original: "https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
     },
     rating: { average: 8.0 },
     genres: ["Animation", "Comedy"],
@@ -106,8 +99,7 @@ const movieData = [
     badge: "Fan Favorite",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+      original: "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
     },
     rating: { average: 8.1 },
     genres: ["Action", "Comedy"],
@@ -120,8 +112,7 @@ const movieData = [
     badge: "Epic",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
+      original: "https://image.tmdb.org/t/p/original/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
     },
     rating: { average: 7.2 },
     genres: ["Action", "Sci-Fi"],
@@ -134,8 +125,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
+      original: "https://image.tmdb.org/t/p/original/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
     },
     rating: { average: 7.6 },
     genres: ["Action", "Adventure"],
@@ -148,8 +138,7 @@ const movieData = [
     badge: "New",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
+      original: "https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg",
     },
     rating: { average: 7.3 },
     genres: ["Action", "Sci-Fi"],
@@ -162,8 +151,7 @@ const movieData = [
     badge: "Top Rated",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      original: "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
     },
     rating: { average: 8.6 },
     genres: ["Drama", "History"],
@@ -176,8 +164,7 @@ const movieData = [
     badge: "Fan Favorite",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+      original: "https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
     },
     rating: { average: 8.7 },
     genres: ["Animation", "Action"],
@@ -190,8 +177,7 @@ const movieData = [
     badge: "Action Hit",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+      original: "https://image.tmdb.org/t/p/original/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
     },
     rating: { average: 7.7 },
     genres: ["Action", "Adventure"],
@@ -204,15 +190,14 @@ const movieData = [
     badge: "Blockbuster",
     image: {
       medium: "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-      original:
-        "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+      original: "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
     },
     rating: { average: 8.0 },
     genres: ["Action", "Comedy"],
     summary:
       "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
   },
-];
+]
 
 const trailers = {
   Avengers: "https://www.youtube.com/embed/eOrNdBpGMv8",
@@ -225,15 +210,12 @@ const trailers = {
   "Deadpool & Wolverine": "https://www.youtube.com/embed/73_1biulkYk",
   "Godzilla x Kong": "https://www.youtube.com/embed/lV1OOlGwExM",
   Furiosa: "https://www.youtube.com/embed/XJMuhwVlca4",
-  "Kingdom of the Planet of the Apes":
-    "https://www.youtube.com/embed/XtFI7SNtVpY",
+  "Kingdom of the Planet of the Apes": "https://www.youtube.com/embed/XtFI7SNtVpY",
   Oppenheimer: "https://www.youtube.com/embed/uYPbbksJxIg",
-  "Spider-Man: Across the Spider-Verse":
-    "https://www.youtube.com/embed/cqGjhVJWtEg",
-  "Mission: Impossible - Dead Reckoning":
-    "https://www.youtube.com/embed/avz06PDqDbM",
+  "Spider-Man: Across the Spider-Verse": "https://www.youtube.com/embed/cqGjhVJWtEg",
+  "Mission: Impossible - Dead Reckoning": "https://www.youtube.com/embed/avz06PDqDbM",
   "Guardians of the Galaxy Vol. 3": "https://www.youtube.com/embed/u3V5KDHRQvk",
-};
+}
 
 const fallbackShows = [
   "Under the Dome",
@@ -249,14 +231,13 @@ const fallbackShows = [
 ].map((name, index) => ({
   id: index + 1,
   name,
-  genres:
-    index % 2 === 0 ? ["Drama", "Science-Fiction"] : ["Action", "Adventure"],
+  genres: index % 2 === 0 ? ["Drama", "Science-Fiction"] : ["Action", "Adventure"],
   rating: { average: 7 + index / 10 },
   language: "English",
   premiered: `201${index % 10}-01-01`,
   summary:
     "Fallback TV show data appears only when the TVMaze API cannot be reached during local development.",
-}));
+}))
 
 const translations = {
   id: {
@@ -272,8 +253,7 @@ const translations = {
     freeShort: "Gratis",
     explore: "Jelajahi Film",
     popularThisWeek: "Populer Minggu Ini",
-    trendingSubtitle:
-      "5 film favorit dengan rating dan tren terbaik di MovieVerse.",
+    trendingSubtitle: "5 film favorit dengan rating dan tren terbaik di MovieVerse.",
     movieFound: "film ditemukan",
     searchPlaceholder: "Cari film favoritmu...",
     highRated: "Hanya rating 8.7 ke atas",
@@ -288,14 +268,12 @@ const translations = {
       "Halaman ini mengambil 10 data show dari TVMaze API menggunakan Axios dan menampilkannya sebagai daftar film/series eksternal.",
     apiSource: "Sumber API",
     apiLoading: "Mengambil 10 data show dari TVMaze API...",
-    apiError:
-      "API sedang tidak tersedia, menampilkan data cadangan agar tampilan tetap bisa diuji.",
+    apiError: "API sedang tidak tersedia, menampilkan data cadangan agar tampilan tetap bisa diuji.",
     apiLanguage: "Bahasa",
     apiPremiered: "Tayang perdana",
     apiGenres: "Genre",
     apiNoRating: "Belum ada rating",
-    footerTech:
-      "Dibuat menggunakan React JS, Tailwind CSS, Axios, dan Public API.",
+    footerTech: "Dibuat menggunakan React JS, Tailwind CSS, Axios, dan Public API.",
     footerRights: "(c) 2026 MovieVerse. Semua hak dilindungi.",
     genreAll: "Semua",
     genres: {
@@ -365,8 +343,7 @@ const translations = {
     freeShort: "Free",
     explore: "Explore Movies",
     popularThisWeek: "Popular This Week",
-    trendingSubtitle:
-      "5 favorite movies with the strongest ratings and trend signals in MovieVerse.",
+    trendingSubtitle: "5 favorite movies with the strongest ratings and trend signals in MovieVerse.",
     movieFound: "movie found",
     searchPlaceholder: "Search your favorite movie...",
     highRated: "Only rating 8.7 and above",
@@ -381,8 +358,7 @@ const translations = {
       "This page fetches 10 shows from the TVMaze API using Axios and displays them as external movie/series data.",
     apiSource: "API Source",
     apiLoading: "Fetching 10 shows from the TVMaze API...",
-    apiError:
-      "The API is unavailable, showing fallback data so the interface can still be tested.",
+    apiError: "The API is unavailable, showing fallback data so the interface can still be tested.",
     apiLanguage: "Language",
     apiPremiered: "Premiered",
     apiGenres: "Genres",
@@ -444,187 +420,161 @@ const translations = {
         "The Guardians rally to protect Rocket and face a mission that could reshape their family forever.",
     },
   },
-};
+}
 
-const stripHtml = (value) => value?.replace(/<[^>]*>/g, "") || "-";
+const stripHtml = (value) => value?.replace(/<[^>]*>/g, "") || "-"
 
 function Home({ theme, language, activePage, onNavigate }) {
-  const isDark = theme === "dark";
-  const text = translations[language];
-  const getGenreLabel = (genre) => text.genres[genre] || genre;
+  const isDark = theme === "dark"
+  const text = translations[language]
+  const getGenreLabel = (genre) => text.genres[genre] || genre
 
-  const [apiItems, setApiItems] = useState([]);
-  const [apiLoading, setApiLoading] = useState(false);
-  const [apiError, setApiError] = useState(false);
-  const [apiFetched, setApiFetched] = useState(false);
-  const [search, setSearch] = useState("");
-  const [activeGenre, setActiveGenre] = useState("All");
-  const [onlyHighRated, setOnlyHighRated] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchClose, setClosingSearch] = useState(false);
-  const [showSearchModal, setShowSearchModal] = useState(false);
-  const [searchCommitted, setSearchCommitted] = useState(false);
-  const [lastSearch, setLastSearch] = useState("");
-  const [recentSearches, setRecentSearches] = useState([]);
-  const heroRef = useRef(null);
-  const [scrollY, setScrollY] = useState(0);
+  const [apiItems, setApiItems] = useState([])
+  const [apiLoading, setApiLoading] = useState(false)
+  const [apiError, setApiError] = useState(false)
+  const [apiFetched, setApiFetched] = useState(false)
+  const [search, setSearch] = useState("")
+  const [activeGenre, setActiveGenre] = useState("All")
+  const [onlyHighRated, setOnlyHighRated] = useState(false)
+  const [selectedMovie, setSelectedMovie] = useState(null)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchClose, setClosingSearch] = useState(false)
+  const [showSearchModal, setShowSearchModal] = useState(false)
+  const [searchCommitted, setSearchCommitted] = useState(false)
+  const [lastSearch, setLastSearch] = useState("")
+  const [recentSearches, setRecentSearches] = useState([])
+  const heroRef = useRef(null)
+  const [scrollY, setScrollY] = useState(0)
 
-  useEffect(() => {
-    if (activePage !== "api" || apiFetched) return;
+useEffect(() => {
+  if (activePage !== "api" || apiFetched) return
 
-    let isMounted = true;
+  let isMounted = true
 
-    setApiLoading(true);
+  setApiLoading(true)
 
-    const minimumLoadingTime = new Promise((resolve) =>
-      setTimeout(resolve, 1200),
-    );
+  const minimumLoadingTime = new Promise((resolve) =>
+    setTimeout(resolve, 1200)
+  )
 
-    Promise.all([
-      axios.get("https://api.tvmaze.com/shows?page=1"),
-      minimumLoadingTime,
-    ])
-      .then(([response]) => {
-        if (!isMounted) return;
+  Promise.all([
+    axios.get("https://api.tvmaze.com/shows?page=1"),
+    minimumLoadingTime,
+  ])
+    .then(([response]) => {
+      if (!isMounted) return
 
-        setApiItems(response.data.slice(0, 10));
-        setApiError(false);
-      })
-      .catch(() => {
-        if (!isMounted) return;
+      setApiItems(response.data.slice(0, 10))
+      setApiError(false)
+    })
+    .catch(() => {
+      if (!isMounted) return
 
-        setApiItems(fallbackShows);
-        setApiError(true);
-      })
-      .finally(() => {
-        if (!isMounted) return;
+      setApiItems(fallbackShows)
+      setApiError(true)
+    })
+    .finally(() => {
+      if (!isMounted) return
 
-        setApiLoading(false);
-        setApiFetched(true);
-      });
+      setApiLoading(false)
+      setApiFetched(true)
+    })
 
-    return () => {
-      isMounted = false;
-    };
-  }, [activePage, apiFetched]);
+  return () => {
+    isMounted = false
+  }
+}, [activePage, apiFetched])
 
-  useEffect(() => {
-    const savedSearches =
-      JSON.parse(localStorage.getItem("recent-searches")) || [];
-    setRecentSearches(savedSearches);
-  }, []);
+useEffect(() => {
+  const savedSearches = JSON.parse(localStorage.getItem("recent-searches")) || []
+  setRecentSearches(savedSearches)
+}, [])
 
-  useEffect(() => {
-    localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
-  }, [recentSearches]);
+useEffect(() => {
+  localStorage.setItem("recent-searches", JSON.stringify(recentSearches))
+}, [recentSearches])
 
-  const handleSearchChange = (value) => {
-    setSearch(value);
-  };
+const handleSearchChange = (value) => {
+  setSearch(value)
+}
 
-  const commitSearch = (value) => {
-    const cleaned = value.trim();
-    if (!cleaned) return;
+const commitSearch = (value) => {
+  const cleaned = value.trim()
+  if (!cleaned) return
 
-    setLastSearch(cleaned);
-    setSearchCommitted(true);
-    setSearch(cleaned);
+  setLastSearch(cleaned)
+  setSearchCommitted(true)
+  setSearch(cleaned)
 
-    setRecentSearches((prev) => {
-      const updated = [
-        cleaned,
-        ...prev.filter((i) => i.toLowerCase() !== cleaned.toLowerCase()),
-      ];
-      return updated.slice(0, 5);
-    });
-  };
+  setRecentSearches(prev => {
+    const updated = [
+      cleaned,
+      ...prev.filter(i => i.toLowerCase() !== cleaned.toLowerCase())
+    ]
+    return updated.slice(0, 5)
+  })
+}
 
-  const exitSearchMode = () => {
-    setShowSearchModal(false);
-    setSearchCommitted(false);
-    setSearch("");
-  };
+const exitSearchMode = () => {
+  setShowSearchModal(false)
+  setSearchCommitted(false)
+  setSearch("")
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+useEffect(() => {
+  const handleScroll = () => {
+    setScrollY(window.scrollY)
+  }
 
-    window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll)
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+  return () => window.removeEventListener("scroll", handleScroll)
+}, [])
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
-    [],
-  );
+    []
+  )
 
-  const featuredMovie = movieData[0];
+  const featuredMovie = movieData[0]
   const trendingMovies = useMemo(
-    () =>
-      [...movieData]
-        .sort(
-          (firstMovie, secondMovie) =>
-            secondMovie.rating.average - firstMovie.rating.average,
-        )
-        .slice(0, 5),
-    [],
-  );
+    () => [...movieData].sort((firstMovie, secondMovie) => secondMovie.rating.average - firstMovie.rating.average).slice(0, 5),
+    []
+  )
 
-  const closeSearchModal = () => {
-    setClosingSearch(true);
+const closeSearchModal = () => {
+  setClosingSearch(true)
 
-    setTimeout(() => {
-      setShowSearchModal(false);
-      setClosingSearch(false);
-    }, 200);
-  };
+  setTimeout(() => {
+    setShowSearchModal(false)
+    setClosingSearch(false)
+  }, 200)
+}
 
   const filteredMovies = movieData.filter((movie) => {
-    const matchesSearch = movie.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchesGenre =
-      activeGenre === "All" || movie.genres.includes(activeGenre);
-    const matchesRating = !onlyHighRated || movie.rating.average >= 8.7;
+    
+    const matchesSearch = movie.name.toLowerCase().includes(search.toLowerCase())
+    const matchesGenre = activeGenre === "All" || movie.genres.includes(activeGenre)
+    const matchesRating = !onlyHighRated || movie.rating.average >= 8.7
 
-    return matchesSearch && matchesGenre && matchesRating;
-  });
+    return matchesSearch && matchesGenre && matchesRating
+  })
 
   const searchResults = movieData.filter((movie) =>
-    movie.name.toLowerCase().includes(search.toLowerCase()),
-  );
-
+    movie.name.toLowerCase().includes(search.toLowerCase())
+  )
+  
   const pageBackground = isDark
     ? "bg-[#050505] text-white"
-    : "bg-[#f3f4f6] text-slate-950";
+    : "bg-[#f3f4f6] text-slate-950"
   const cardClass = isDark
     ? "border-white/10 bg-gray-900"
-    : "border-slate-200 bg-transparent";
-  const mutedText = isDark ? "text-gray-300" : "text-slate-600";
-  const subtleText = isDark ? "text-gray-400" : "text-slate-500";
+    : "border-slate-200 bg-transparent"
+  const mutedText = isDark ? "text-gray-300" : "text-slate-600"
+  const subtleText = isDark ? "text-gray-400" : "text-slate-500"
 
   return (
-    <main
-      className={`min-h-screen overflow-hidden transition-colors duration-500 ${pageBackground}`}
-    >
+    <main className={`min-h-screen overflow-hidden transition-colors duration-500 ${pageBackground}`}>
       <div className="fixed inset-0 overflow-hidden -z-10">
         <div className="absolute top-0 left-0 w-[360px] h-[360px] bg-red-500/20 blur-3xl rounded-full"></div>
         <div className="absolute bottom-0 right-0 w-[360px] h-[360px] bg-yellow-500/20 blur-3xl rounded-full"></div>
@@ -633,8 +583,8 @@ function Home({ theme, language, activePage, onNavigate }) {
       {activePage === "home" && (
         <section className="max-w-7xl mx-auto px-5 pt-0 pb-14">
           <div
-            ref={heroRef}
-            className={`
+    ref={heroRef}
+  className={`
     relative
     min-h-[720px]
     overflow-hidden
@@ -643,31 +593,36 @@ function Home({ theme, language, activePage, onNavigate }) {
     shadow-2xl
     transition-all
     duration-500
-    ${isDark ? "border-white/10 bg-black" : "border-slate-200 bg-white"}
+    ${
+      isDark
+        ? "border-white/10 bg-black"
+        : "border-slate-200 bg-white"
+    }
   `}
-          >
-            <div
-              className="absolute inset-0 scale-110"
-              style={{
-                transform: `translateY(${scrollY * 0.35}px) scale(1.12)`,
-                transition: "transform .1s linear",
-              }}
-            >
-              <img
-                src={featuredMovie.image.original}
-                alt={featuredMovie.name}
-                className="
+>
+
+  <div
+    className="absolute inset-0 scale-110"
+    style={{
+      transform: `translateY(${scrollY * 0.35}px) scale(1.12)`,
+      transition: "transform .1s linear",
+    }}
+  >
+    <img
+      src={featuredMovie.image.original}
+      alt={featuredMovie.name}
+      className="
         h-full
         w-full
         object-cover
         opacity-70
         animate-[heroZoom_18s_ease-in-out_infinite_alternate]
       "
-              />
-            </div>
+    />
+  </div>
 
-            <div
-              className={`
+  <div
+    className={`
       absolute inset-0
       ${
         isDark
@@ -675,12 +630,12 @@ function Home({ theme, language, activePage, onNavigate }) {
           : "bg-gradient-to-r from-white via-white/70 to-white/10"
       }
     `}
-            ></div>
+  ></div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-            <div
-              className="
+  <div
+    className="
       absolute
       -left-20
       top-10
@@ -690,10 +645,10 @@ function Home({ theme, language, activePage, onNavigate }) {
       bg-red-500/20
       blur-3xl
     "
-            ></div>
+  ></div>
 
-            <div
-              className="
+  <div
+    className="
       absolute
       bottom-0
       right-0
@@ -703,11 +658,12 @@ function Home({ theme, language, activePage, onNavigate }) {
       bg-yellow-500/20
       blur-3xl
     "
-            ></div>
+  ></div>
 
-            <div className="relative z-10 flex min-h-[720px] max-w-3xl flex-col justify-end px-6 py-14 md:px-14">
-              <span
-                className="
+  <div className="relative z-10 flex min-h-[720px] max-w-3xl flex-col justify-end px-6 py-14 md:px-14">
+
+    <span
+      className="
         mb-5
         w-fit
         rounded-full
@@ -723,13 +679,13 @@ function Home({ theme, language, activePage, onNavigate }) {
         text-yellow-300
         backdrop-blur-xl
       "
-              >
-                {text.featured}
-              </span>
+    >
+      {text.featured}
+    </span>
 
-              {/* TITLE */}
-              <h1
-                className={`
+    {/* TITLE */}
+    <h1
+      className={`
         mb-5
         text-5xl
         font-black
@@ -737,56 +693,70 @@ function Home({ theme, language, activePage, onNavigate }) {
         tracking-tight
         drop-shadow-2xl
         md:text-8xl
-        ${isDark ? "text-white" : "text-slate-950"}
+        ${
+          isDark
+            ? "text-white"
+            : "text-slate-950"
+        }
       `}
-              >
-                {featuredMovie.name}
-              </h1>
+    >
+      {featuredMovie.name}
+    </h1>
 
-              {/* GENRES */}
-              <div className="mb-6 flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-extrabold text-black shadow-xl">
-                  {text.rating} {featuredMovie.rating.average}
-                </span>
+    {/* GENRES */}
+    <div className="mb-6 flex flex-wrap items-center gap-3">
 
-                {featuredMovie.genres.map((genre) => (
-                  <span
-                    key={genre}
-                    className={`
+      <span className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-extrabold text-black shadow-xl">
+        {text.rating} {featuredMovie.rating.average}
+      </span>
+
+      {featuredMovie.genres.map((genre) => (
+        <span
+          key={genre}
+          className={`
             rounded-full
             px-5
             py-2
             text-sm
             font-semibold
             backdrop-blur-xl
-            ${isDark ? "bg-white/10 text-white" : "bg-black/10 text-slate-900"}
+            ${
+              isDark
+                ? "bg-white/10 text-white"
+                : "bg-black/10 text-slate-900"
+            }
           `}
-                  >
-                    {getGenreLabel(genre)}
-                  </span>
-                ))}
-              </div>
+        >
+          {getGenreLabel(genre)}
+        </span>
+      ))}
+    </div>
 
-              {/* SUMMARY */}
-              <p
-                className={`
+    {/* SUMMARY */}
+    <p
+      className={`
         mb-8
         max-w-2xl
         text-base
         leading-relaxed
         md:text-xl
-        ${isDark ? "text-gray-200" : "text-slate-700"}
+        ${
+          isDark
+            ? "text-gray-200"
+            : "text-slate-700"
+        }
       `}
-              >
-                {text.summaries[featuredMovie.name]}
-              </p>
+    >
+      {text.summaries[featuredMovie.name]}
+    </p>
 
-              {/* BUTTONS */}
-              <div className="flex flex-wrap gap-4">
-                <button
-                  type="button"
-                  onClick={() => setSelectedMovie(featuredMovie)}
-                  className="
+    {/* BUTTONS */}
+    <div className="flex flex-wrap gap-4">
+
+      <button
+        type="button"
+        onClick={() => setSelectedMovie(featuredMovie)}
+        className="
           rounded-full
           bg-gradient-to-r
           from-red-500
@@ -804,14 +774,14 @@ function Home({ theme, language, activePage, onNavigate }) {
           hover:scale-110
           hover:shadow-red-500/50
         "
-                >
-                  {text.watchTrailer}
-                </button>
+      >
+        {text.watchTrailer}
+      </button>
 
-                <button
-                  type="button"
-                  onClick={() => onNavigate("movies")}
-                  className={`
+      <button
+        type="button"
+        onClick={() => onNavigate("movies")}
+        className={`
           rounded-full
           border
           px-8
@@ -828,61 +798,39 @@ function Home({ theme, language, activePage, onNavigate }) {
               : "border-slate-300 bg-white/70 text-slate-900 hover:bg-white"
           }
         `}
-                >
-                  {text.openMovies}
-                </button>
-              </div>
-            </div>
-          </div>
+      >
+        {text.openMovies}
+      </button>
+
+    </div>
+  </div>
+</div>
 
           <div className="py-14 text-center">
             <h2 className="mb-4 bg-gradient-to-r from-red-500 via-yellow-400 to-orange-500 bg-clip-text text-4xl font-extrabold text-transparent md:text-6xl">
               MovieVerse
             </h2>
 
-            <p
-              className={`mx-auto max-w-3xl text-lg leading-relaxed md:text-xl ${mutedText}`}
-            >
+            <p className={`mx-auto max-w-3xl text-lg leading-relaxed md:text-xl ${mutedText}`}>
               {text.heroDescription}
             </p>
           </div>
 
           <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            <InfoCard
-              value="15+"
-              label={text.totalMovies}
-              color="text-yellow-400"
-              className={cardClass}
-            />
-            <InfoCard
-              value="HD"
-              label={text.officialTrailer}
-              color="text-red-400"
-              className={cardClass}
-            />
-            <InfoCard
-              value={text.freeShort}
-              label={text.freeAccess}
-              color="text-green-400"
-              className={cardClass}
-            />
+            <InfoCard value="15+" label={text.totalMovies} color="text-yellow-400" className={cardClass} />
+            <InfoCard value="HD" label={text.officialTrailer} color="text-red-400" className={cardClass} />
+            <InfoCard value={text.freeShort} label={text.freeAccess} color="text-green-400" className={cardClass} />
           </div>
 
           <div>
             <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
-                <p
-                  className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}
-                >
+                <p className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}>
                   {text.explore}
                 </p>
-                <h2 className="text-3xl font-extrabold md:text-4xl">
-                  {text.popularThisWeek}
-                </h2>
+                <h2 className="text-3xl font-extrabold md:text-4xl">{text.popularThisWeek}</h2>
               </div>
-              <p className={`max-w-xl text-sm leading-relaxed ${subtleText}`}>
-                {text.trendingSubtitle}
-              </p>
+              <p className={`max-w-xl text-sm leading-relaxed ${subtleText}`}>{text.trendingSubtitle}</p>
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -906,14 +854,10 @@ function Home({ theme, language, activePage, onNavigate }) {
         <section className="max-w-7xl mx-auto px-5 pt-28 pb-14">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p
-                className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}
-              >
+              <p className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}>
                 {text.explore}
               </p>
-              <h1 className="text-4xl font-extrabold md:text-6xl">
-                {text.popularThisWeek}
-              </h1>
+              <h1 className="text-4xl font-extrabold md:text-6xl">{text.popularThisWeek}</h1>
             </div>
 
             <p className={`text-sm font-semibold ${subtleText}`}>
@@ -921,18 +865,16 @@ function Home({ theme, language, activePage, onNavigate }) {
             </p>
           </div>
 
-          <form
-            className={`mb-10 rounded-3xl border p-5 shadow-2xl backdrop-blur-xl ${cardClass}`}
-          >
+          <form className={`mb-10 rounded-3xl border p-5 shadow-2xl backdrop-blur-xl ${cardClass}`}>
             <div className="relative">
               <button
                 type="button"
                 onClick={() => {
-                  setShowSearchModal(true);
+                  setShowSearchModal(true)
 
                   if (searchCommitted) {
-                    setSearch(""); // clear input lama
-                    setSearchCommitted(false);
+                    setSearch("")        // clear input lama
+                    setSearchCommitted(false)
                   }
                 }}
                 className={`w-full rounded-2xl border p-4 text-left transition ${
@@ -960,9 +902,7 @@ function Home({ theme, language, activePage, onNavigate }) {
             </div>
 
             <fieldset className="mt-5">
-              <legend className={`mb-3 text-sm font-bold ${subtleText}`}>
-                {text.genreFilter}
-              </legend>
+              <legend className={`mb-3 text-sm font-bold ${subtleText}`}>{text.genreFilter}</legend>
               <div className="flex flex-wrap gap-3">
                 {genres.map((genre) => (
                   <label
@@ -992,9 +932,7 @@ function Home({ theme, language, activePage, onNavigate }) {
 
           {filteredMovies.length === 0 ? (
             <div className="py-20 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-red-400">
-                {text.notFound}
-              </h2>
+              <h2 className="mb-4 text-4xl font-bold text-red-400">{text.notFound}</h2>
               <p className={subtleText}>{text.notFoundHelp}</p>
             </div>
           ) : (
@@ -1017,55 +955,28 @@ function Home({ theme, language, activePage, onNavigate }) {
       {activePage === "api" && (
         <section className="max-w-7xl mx-auto px-5 pt-28 pb-14">
           <div className="mb-8">
-            <p
-              className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}
-            >
+            <p className={`mb-2 text-sm font-bold uppercase tracking-[0.25em] ${isDark ? "text-red-300" : "text-red-500"}`}>
               {text.apiEyebrow}
             </p>
-            <h1 className="mb-4 text-4xl font-extrabold md:text-6xl">
-              {text.apiTitle}
-            </h1>
-            <p className={`max-w-3xl text-lg leading-relaxed ${mutedText}`}>
-              {text.apiDescription}
-            </p>
+            <h1 className="mb-4 text-4xl font-extrabold md:text-6xl">{text.apiTitle}</h1>
+            <p className={`max-w-3xl text-lg leading-relaxed ${mutedText}`}>{text.apiDescription}</p>
           </div>
 
-          <div
-            className={`mb-8 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl ${cardClass}`}
-          >
-            <p
-              className={`text-sm font-bold uppercase tracking-[0.2em] ${subtleText}`}
-            >
-              {text.apiSource}
-            </p>
-            <p className="mt-2 font-mono text-sm">
-              https://api.tvmaze.com/shows?page=1
-            </p>
+          <div className={`mb-8 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl ${cardClass}`}>
+            <p className={`text-sm font-bold uppercase tracking-[0.2em] ${subtleText}`}>{text.apiSource}</p>
+            <p className="mt-2 font-mono text-sm">https://api.tvmaze.com/shows?page=1</p>
           </div>
 
           {apiLoading ? (
             <div className="grid gap-6 md:grid-cols-2">
               {Array.from({ length: 10 }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`rounded-3xl border p-6 shadow-xl ${cardClass}`}
-                >
-                  <div
-                    className={`mb-4 h-5 w-24 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}
-                  ></div>
-                  <div
-                    className={`mb-3 h-6 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}
-                  ></div>
-                  <div
-                    className={`h-4 w-4/5 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}
-                  ></div>
+                <div key={index} className={`rounded-3xl border p-6 shadow-xl ${cardClass}`}>
+                  <div className={`mb-4 h-5 w-24 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}></div>
+                  <div className={`mb-3 h-6 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}></div>
+                  <div className={`h-4 w-4/5 animate-pulse rounded-full ${isDark ? "bg-white/10" : "bg-slate-200"}`}></div>
                 </div>
               ))}
-              <p
-                className={`md:col-span-2 text-center font-semibold ${subtleText}`}
-              >
-                {text.apiLoading}
-              </p>
+              <p className={`md:col-span-2 text-center font-semibold ${subtleText}`}>{text.apiLoading}</p>
             </div>
           ) : (
             <>
@@ -1077,18 +988,13 @@ function Home({ theme, language, activePage, onNavigate }) {
 
               <div className="grid gap-6 md:grid-cols-2">
                 {apiItems.map((show) => (
-                  <article
-                    key={show.id}
-                    className={`rounded-3xl border p-6 shadow-xl transition hover:-translate-y-1 hover:shadow-red-500/20 ${cardClass}`}
-                  >
+                  <article key={show.id} className={`rounded-3xl border p-6 shadow-xl transition hover:-translate-y-1 hover:shadow-red-500/20 ${cardClass}`}>
                     <div className="mb-4 flex flex-wrap items-center gap-2">
                       <span className="inline-flex rounded-full bg-red-500 px-3 py-1 text-xs font-bold text-white">
                         TVMaze #{show.id}
                       </span>
                       <span className="inline-flex rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold text-black">
-                        {show.rating?.average
-                          ? `${text.rating} ${show.rating.average}`
-                          : text.apiNoRating}
+                        {show.rating?.average ? `${text.rating} ${show.rating.average}` : text.apiNoRating}
                       </span>
                     </div>
 
@@ -1096,12 +1002,10 @@ function Home({ theme, language, activePage, onNavigate }) {
 
                     <div className={`mb-4 grid gap-2 text-sm ${mutedText}`}>
                       <p>
-                        <span className="font-bold">{text.apiLanguage}:</span>{" "}
-                        {show.language || "-"}
+                        <span className="font-bold">{text.apiLanguage}:</span> {show.language || "-"}
                       </p>
                       <p>
-                        <span className="font-bold">{text.apiPremiered}:</span>{" "}
-                        {show.premiered || "-"}
+                        <span className="font-bold">{text.apiPremiered}:</span> {show.premiered || "-"}
                       </p>
                       <p>
                         <span className="font-bold">{text.apiGenres}:</span>{" "}
@@ -1130,169 +1034,177 @@ function Home({ theme, language, activePage, onNavigate }) {
         />
       )}
 
-      {showSearchModal && (
-        <div
-          onClick={closeSearchModal}
-          className={`fixed inset-0 z-50 flex items-start justify-center bg-black/50 px-4 pt-24 backdrop-blur-md ${
-            searchClose
-              ? "animate-[fadeOutDown_.2s_ease_forwards]"
-              : "animate-[fadeIn_.25s_ease]"
+{showSearchModal && (
+  <div
+    onClick={closeSearchModal}
+    className={`fixed inset-0 z-50 flex items-start justify-center bg-black/50 px-4 pt-24 backdrop-blur-md ${
+      searchClose
+        ? "animate-[fadeOutDown_.2s_ease_forwards]"
+        : "animate-[fadeIn_.25s_ease]"
+    }`}
+  >
+    <div
+      onClick={(event) => event.stopPropagation()}
+      className={`mt-28 w-[92%] max-w-2xl rounded-3xl border p-6 shadow-2xl backdrop-blur-2xl transition-all ${
+        isDark
+          ? "border-white/10 bg-gray-900/80"
+          : "border-white/40 bg-white/70"
+      }`}
+    >
+      <div className="relative">
+        <input
+          autoFocus
+          type="text"
+          placeholder={text.searchPlaceholder}
+          value={search}
+          onChange={(event) =>
+            handleSearchChange(event.target.value)
+          }
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              commitSearch(search)
+              closeSearchModal()
+            }
+          }}
+          className={`w-full rounded-2xl border p-4 pr-12 outline-none focus:ring-2 focus:ring-red-500 ${
+            isDark
+              ? "border-white/10 bg-black/20 text-white placeholder:text-gray-400"
+              : "border-slate-200 bg-white text-slate-950 placeholder:text-slate-500"
           }`}
-        >
-          <div
-            onClick={(event) => event.stopPropagation()}
-            className={`mt-28 w-[92%] max-w-2xl rounded-3xl border p-6 shadow-2xl backdrop-blur-2xl transition-all ${
+        />
+
+        {search && (
+          <button
+            type="button"
+            onClick={() => setSearch("")}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold transition ${
               isDark
-                ? "border-white/10 bg-gray-900/80"
-                : "border-white/40 bg-white/70"
+                ? "text-gray-400 hover:text-white"
+                : "text-slate-400 hover:text-black"
             }`}
           >
-            <div className="relative">
-              <input
-                autoFocus
-                type="text"
-                placeholder={text.searchPlaceholder}
-                value={search}
-                onChange={(event) => handleSearchChange(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    commitSearch(search);
-                    closeSearchModal();
-                  }
-                }}
-                className={`w-full rounded-2xl border p-4 pr-12 outline-none focus:ring-2 focus:ring-red-500 ${
-                  isDark
-                    ? "border-white/10 bg-black/20 text-white placeholder:text-gray-400"
-                    : "border-slate-200 bg-white text-slate-950 placeholder:text-slate-500"
-                }`}
+            ✕
+          </button>
+        )}
+      </div>
+          
+      {search.trim() && (
+  <div className="mt-6">
+    <p
+      className={`mb-4 text-sm font-bold ${
+        isDark
+          ? "text-gray-300"
+          : "text-slate-600"
+      }`}
+    >
+      Search Results
+    </p>
+
+      {searchResults.length > 0 ? (
+        <div className="space-y-3">
+          {searchResults.slice(0, 5).map((movie) => (
+            <button
+              key={movie.id}
+              type="button"
+              onClick={() => {
+                setSelectedMovie(movie)
+                commitSearch(search)
+                closeSearchModal()
+              }}
+              className={`flex w-full items-center gap-4 rounded-2xl p-3 text-left transition hover:scale-[1.01] ${
+                isDark
+                  ? "bg-white/5 hover:bg-white/10"
+                  : "bg-slate-100 hover:bg-slate-200"
+              }`}
+            >
+              <img
+                src={movie.image.medium}
+                alt={movie.name}
+                className="h-16 w-12 rounded-lg object-cover"
               />
 
-              {search && (
-                <button
-                  type="button"
-                  onClick={() => setSearch("")}
-                  className={`absolute right-4 top-1/2 -translate-y-1/2 text-lg font-bold transition ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-slate-400 hover:text-black"
-                  }`}
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+              <div className="flex-1 overflow-hidden">
+                <h3 className="truncate font-bold">
+                  {movie.name}
+                </h3>
 
-            {search.trim() && (
-              <div className="mt-6">
                 <p
-                  className={`mb-4 text-sm font-bold ${
-                    isDark ? "text-gray-300" : "text-slate-600"
+                  className={`mt-1 text-sm ${
+                    isDark
+                      ? "text-gray-400"
+                      : "text-slate-500"
                   }`}
                 >
-                  Search Results
+                  ⭐ {movie.rating.average} •{" "}
+                  {movie.genres.join(", ")}
                 </p>
-
-                {searchResults.length > 0 ? (
-                  <div className="space-y-3">
-                    {searchResults.slice(0, 5).map((movie) => (
-                      <button
-                        key={movie.id}
-                        type="button"
-                        onClick={() => {
-                          setSelectedMovie(movie);
-                          commitSearch(search);
-                          closeSearchModal();
-                        }}
-                        className={`flex w-full items-center gap-4 rounded-2xl p-3 text-left transition hover:scale-[1.01] ${
-                          isDark
-                            ? "bg-white/5 hover:bg-white/10"
-                            : "bg-slate-100 hover:bg-slate-200"
-                        }`}
-                      >
-                        <img
-                          src={movie.image.medium}
-                          alt={movie.name}
-                          className="h-16 w-12 rounded-lg object-cover"
-                        />
-
-                        <div className="flex-1 overflow-hidden">
-                          <h3 className="truncate font-bold">{movie.name}</h3>
-
-                          <p
-                            className={`mt-1 text-sm ${
-                              isDark ? "text-gray-400" : "text-slate-500"
-                            }`}
-                          >
-                            ⭐ {movie.rating.average} •{" "}
-                            {movie.genres.join(", ")}
-                          </p>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div
-                    className={`rounded-2xl p-4 text-sm ${
-                      isDark
-                        ? "bg-white/5 text-gray-400"
-                        : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    No movies found.
-                  </div>
-                )}
               </div>
-            )}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div
+          className={`rounded-2xl p-4 text-sm ${
+            isDark
+              ? "bg-white/5 text-gray-400"
+              : "bg-slate-100 text-slate-500"
+          }`}
+        >
+          No movies found.
+        </div>
+      )}
+    </div>
+  )}
 
-            {recentSearches.length > 0 && (
-              <div className="mt-5">
-                <div className="mb-3 flex items-center justify-between">
-                  <p
-                    className={`text-sm font-bold ${
-                      isDark ? "text-gray-300" : "text-slate-600"
-                    }`}
-                  >
-                    Recent Searches
-                  </p>
+      {recentSearches.length > 0 && (
+        <div className="mt-5">
+          <div className="mb-3 flex items-center justify-between">
+            <p
+              className={`text-sm font-bold ${
+                isDark
+                  ? "text-gray-300"
+                  : "text-slate-600"
+              }`}
+            >
+              Recent Searches
+            </p>
 
-                  <button
-                    type="button"
-                    onClick={() => setRecentSearches([])}
-                    className={`text-xs font-semibold transition ${
-                      isDark
-                        ? "text-red-300 hover:text-red-200"
-                        : "text-red-500 hover:text-red-600"
-                    }`}
-                  >
-                    Clear All
-                  </button>
-                </div>
+            <button
+              type="button"
+              onClick={() => setRecentSearches([])}
+              className={`text-xs font-semibold transition ${
+                isDark
+                  ? "text-red-300 hover:text-red-200"
+                  : "text-red-500 hover:text-red-600"
+              }`}
+            >
+              Clear All
+            </button>
+          </div>
 
-                <div className="flex flex-wrap gap-3">
-                  {recentSearches.map((item, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => setSearch(item)}
-                      className={`rounded-full px-4 py-2 text-sm transition hover:scale-105 ${
-                        isDark
-                          ? "bg-white/10 text-white hover:bg-red-500"
-                          : "bg-slate-200 text-slate-800 hover:bg-red-500 hover:text-white"
-                      }`}
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+          <div className="flex flex-wrap gap-3">
+            {recentSearches.map((item, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setSearch(item)}
+                className={`rounded-full px-4 py-2 text-sm transition hover:scale-105 ${
+                  isDark
+                    ? "bg-white/10 text-white hover:bg-red-500"
+                    : "bg-slate-200 text-slate-800 hover:bg-red-500 hover:text-white"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
       )}
+    </div>
+  </div>
+)}
 
-      <footer
-        className={`mt-16 border-t ${isDark ? "border-white/10" : "border-slate-200"}`}
-      >
+      <footer className={`mt-16 border-t ${isDark ? "border-white/10" : "border-slate-200"}`}>
         <div className="max-w-7xl mx-auto px-5 py-10 text-center">
           <h2 className="mb-3 bg-gradient-to-r from-red-500 to-yellow-400 bg-clip-text text-3xl font-bold text-transparent">
             MovieVerse
@@ -1304,34 +1216,23 @@ function Home({ theme, language, activePage, onNavigate }) {
         </div>
       </footer>
     </main>
-  );
+  )
 }
 
 function InfoCard({ value, label, color, className }) {
   return (
-    <article
-      className={`rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition hover:scale-105 ${className}`}
-    >
+    <article className={`rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition hover:scale-105 ${className}`}>
       <h3 className={`mb-2 text-4xl font-bold ${color}`}>{value}</h3>
       <p>{label}</p>
     </article>
-  );
+  )
 }
 
-function MovieCard({
-  movie,
-  text,
-  isDark,
-  getGenreLabel,
-  onSelect,
-  compact = false,
-}) {
+function MovieCard({ movie, text, isDark, getGenreLabel, onSelect, compact = false }) {
   return (
     <article
       className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
-        isDark
-          ? "border-white/10 bg-gray-900"
-          : "border-slate-200 bg-transparent"
+        isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-transparent"
       }`}
     >
       <div className="relative overflow-hidden">
@@ -1370,9 +1271,7 @@ function MovieCard({
           ))}
         </div>
 
-        <p
-          className={`mb-6 line-clamp-3 text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}
-        >
+        <p className={`mb-6 line-clamp-3 text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}>
           {text.summaries[movie.name]}
         </p>
 
@@ -1385,7 +1284,7 @@ function MovieCard({
         </button>
       </div>
     </article>
-  );
+  )
 }
 
 function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
@@ -1397,9 +1296,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
       <article
         onClick={(event) => event.stopPropagation()}
         className={`relative my-10 w-full max-w-5xl overflow-hidden rounded-3xl border shadow-2xl ${
-          isDark
-            ? "border-white/10 bg-gray-900"
-            : "border-slate-200 bg-white text-slate-950"
+          isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-white text-slate-950"
         }`}
       >
         <button
@@ -1420,9 +1317,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
 
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <h2 className="mb-4 text-3xl font-extrabold md:text-5xl">
-              {movie.name}
-            </h2>
+            <h2 className="mb-4 text-3xl font-extrabold md:text-5xl">{movie.name}</h2>
 
             <div className="flex flex-wrap gap-3">
               <span className="rounded-full bg-yellow-500 px-4 py-1 font-bold text-black">
@@ -1430,10 +1325,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
               </span>
 
               {movie.genres.map((genre) => (
-                <span
-                  key={genre}
-                  className="rounded-full bg-red-500/80 px-4 py-1 text-sm"
-                >
+                <span key={genre} className="rounded-full bg-red-500/80 px-4 py-1 text-sm">
                   {getGenreLabel(genre)}
                 </span>
               ))}
@@ -1444,9 +1336,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
         <div className="p-6 md:p-10">
           <h3 className="mb-5 text-2xl font-bold">{text.movieSummary}</h3>
 
-          <p
-            className={`mb-10 leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}
-          >
+          <p className={`mb-10 leading-relaxed ${isDark ? "text-gray-300" : "text-slate-600"}`}>
             {text.summaries[movie.name]}
           </p>
 
@@ -1463,7 +1353,7 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
         </div>
       </article>
     </div>
-  );
+  )
 }
 
 <style jsx global>{`
@@ -1476,6 +1366,6 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
       transform: scale(1.18);
     }
   }
-`}</style>;
+`}</style>
 
-export default Home;
+export default Home

@@ -469,6 +469,7 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [recentSearches, setRecentSearches] = useState([]);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
@@ -557,18 +558,26 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleItems((prev) => [
+              ...new Set([...prev, entry.target.dataset.id]),
+            ]);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
 
-    window.scrollTo(0, 80);
+    const elements = document.querySelectorAll(".fade-scroll");
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   const genres = useMemo(
@@ -635,6 +644,7 @@ function Home({ theme, language, activePage, onNavigate }) {
           <div
             ref={heroRef}
             className={`
+    mobile-fade
     relative
     min-h-[720px]
     overflow-hidden
@@ -999,15 +1009,24 @@ function Home({ theme, language, activePage, onNavigate }) {
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {filteredMovies.map((movie) => (
-                <MovieCard
+              {filteredMovies.map((movie, index) => (
+                <div
                   key={movie.id}
-                  movie={movie}
-                  text={text}
-                  isDark={isDark}
-                  getGenreLabel={getGenreLabel}
-                  onSelect={setSelectedMovie}
-                />
+                  data-id={movie.id}
+                  className={`
+                  fade-scroll
+                  ${visibleItems.includes(String(movie.id)) ? "fade-show" : ""}
+                  fade-delay-${index % 5}
+                `}
+                >
+                  <MovieCard
+                    movie={movie}
+                    text={text}
+                    isDark={isDark}
+                    getGenreLabel={getGenreLabel}
+                    onSelect={setSelectedMovie}
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -1474,6 +1493,49 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
 
     100% {
       transform: scale(1.18);
+    }
+  }
+
+  @keyframes fadeUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .fade-show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .fade-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .fade-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .fade-delay-4 {
+      transition-delay: 0.4s;
     }
   }
 `}</style>;

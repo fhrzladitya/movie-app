@@ -466,9 +466,13 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchCommitted, setSearchCommitted] = useState(false);
   const [lastSearch, setLastSearch] = useState("");
-  const [recentSearches, setRecentSearches] = useState([]);
+  const [recentSearches, setRecentSearches] = useState(() => {
+    return JSON.parse(localStorage.getItem("recent-searches")) || [];
+  });
+  const movieSectionRef = useRef(null);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const [visibleCards, setVisibleCards] = useState([]);
 
   useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
@@ -509,11 +513,39 @@ function Home({ theme, language, activePage, onNavigate }) {
     };
   }, [activePage, apiFetched]);
 
+  requestAnimationFrame(() => {
+    
   useEffect(() => {
-    const savedSearches =
-      JSON.parse(localStorage.getItem("recent-searches")) || [];
-    setRecentSearches(savedSearches);
-  }, []);
+      setVisibleCards([]);
+    });
+
+    const cards = document.querySelectorAll(".movie-card");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = Number(entry.target.dataset.id);
+
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) => {
+              if (prev.includes(id)) return prev;
+              return [...prev, id];
+            });
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "0px 0px -80px 0px",
+      },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activePage]);
 
   useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
@@ -557,19 +589,8 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    window.scrollTo(0, 80);
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 100);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [activePage]);
 
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
@@ -868,7 +889,7 @@ function Home({ theme, language, activePage, onNavigate }) {
             />
           </div>
 
-          <div>
+          <div ref={movieSectionRef}>
             <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p
@@ -894,7 +915,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
-                  compact
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1007,6 +1028,7 @@ function Home({ theme, language, activePage, onNavigate }) {
                   isDark={isDark}
                   getGenreLabel={getGenreLabel}
                   onSelect={setSelectedMovie}
+                  isVisible={visibleCards.includes(movie.id)}
                 />
               ))}
             </div>
@@ -1325,14 +1347,36 @@ function MovieCard({
   getGenreLabel,
   onSelect,
   compact = false,
+  isVisible = true,
 }) {
   return (
     <article
-      className={`group overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-3 hover:shadow-red-500/20 ${
-        isDark
-          ? "border-white/10 bg-gray-900"
-          : "border-slate-200 bg-transparent"
-      }`}
+      data-id={movie.id}
+      className={`
+    movie-card
+    group
+    overflow-hidden
+    rounded-3xl
+    border
+    shadow-2xl
+    backdrop-blur-xl
+    transition-all
+    duration-700
+
+    ${
+      isVisible
+        ? "opacity-100 translate-y-0 scale-100"
+        : "opacity-0 translate-y-6 scale-95"
+    }
+
+    md:hover:-translate-y-3
+    md:hover:scale-100
+    md:hover:shadow-red-500/20
+
+    ${
+      isDark ? "border-white/10 bg-gray-900" : "border-slate-200 bg-transparent"
+    }
+  `}
     >
       <div className="relative overflow-hidden">
         <img
