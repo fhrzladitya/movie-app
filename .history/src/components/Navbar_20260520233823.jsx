@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 const navText = {
   id: {
@@ -18,7 +18,7 @@ const navText = {
     },
     languageButton: "ID",
   },
-};
+}
 
 function Navbar({
   theme,
@@ -28,33 +28,37 @@ function Navbar({
   onToggleTheme,
   onToggleLanguage,
 }) {
-  const text = navText[language];
-  const isDark = theme === "dark";
+  const text = navText[language]
+  const isDark = theme === "dark"
 
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      // const currentScrollY = window.scrollY
 
       if (currentScrollY <= 10) {
-        setShowNavbar(true);
-      } else if (currentScrollY > lastScrollY) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
+        setShowNavbar(true)
       }
 
-      setLastScrollY(currentScrollY);
-    };
+      else if (currentScrollY > lastScrollY) {
+        setShowNavbar(false)
+      }
 
-    window.addEventListener("scroll", handleScroll);
+      else {
+        setShowNavbar(true)
+      }
+
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [lastScrollY])
 
   const navButtonClass = (page) =>
     `
@@ -73,10 +77,10 @@ function Navbar({
       activePage === page
         ? "bg-red-500 text-white shadow-lg shadow-red-500/25"
         : isDark
-          ? "text-gray-200 hover:bg-white/10 hover:text-yellow-300"
-          : "text-slate-700 hover:bg-white/80 hover:text-red-500"
+        ? "text-gray-200 hover:bg-white/10 hover:text-yellow-300"
+        : "text-slate-700 hover:bg-white/80 hover:text-red-500"
     }
-  `;
+  `
 
   return (
     <header
@@ -100,7 +104,9 @@ function Navbar({
       `}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-4 md:px-5">
+
         <div className="flex flex-col gap-3 py-3 md:hidden">
+
           <button
             type="button"
             onClick={() => onNavigate("home")}
@@ -122,6 +128,7 @@ function Navbar({
           </button>
 
           <div className="flex items-center justify-between gap-3">
+
             <nav className="flex items-center gap-2">
               {Object.entries(text.pages).map(([page, label]) => (
                 <button
@@ -136,6 +143,7 @@ function Navbar({
             </nav>
 
             <div className="flex items-center gap-2 shrink-0">
+
               <button
                 type="button"
                 onClick={onToggleLanguage}
@@ -171,11 +179,13 @@ function Navbar({
               >
                 {theme === "dark" ? "☀️" : "🌙"}
               </button>
+
             </div>
           </div>
         </div>
 
         <div className="hidden md:flex items-center justify-between py-4">
+
           <button
             type="button"
             onClick={() => onNavigate("home")}
@@ -195,6 +205,7 @@ function Navbar({
           </button>
 
           <div className="flex items-center gap-3">
+
             <nav className="flex items-center gap-2 text-sm font-semibold">
               {Object.entries(text.pages).map(([page, label]) => (
                 <button
@@ -243,11 +254,13 @@ function Navbar({
             >
               {theme === "dark" ? "☀️" : "🌙"}
             </button>
+
           </div>
         </div>
+
       </div>
     </header>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from "react"
+import { useEffect, useMemo, useState } from "react"
 import axios from "axios"
 
 const movieData = [
@@ -443,8 +443,6 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [searchCommitted, setSearchCommitted] = useState(false)
   const [lastSearch, setLastSearch] = useState("")
   const [recentSearches, setRecentSearches] = useState([])
-  const heroRef = useRef(null)
-  const [scrollY, setScrollY] = useState(0)
 
 useEffect(() => {
   if (activePage !== "api" || apiFetched) return
@@ -521,16 +519,6 @@ const exitSearchMode = () => {
   setSearch("")
 }
 
-useEffect(() => {
-  const handleScroll = () => {
-    setScrollY(window.scrollY)
-  }
-
-  window.addEventListener("scroll", handleScroll)
-
-  return () => window.removeEventListener("scroll", handleScroll)
-}, [])
-
   const genres = useMemo(
     () => ["All", ...new Set(movieData.flatMap((movie) => movie.genres))],
     []
@@ -565,8 +553,8 @@ const closeSearchModal = () => {
   )
   
   const pageBackground = isDark
-    ? "bg-[#050505] text-white"
-    : "bg-[#f3f4f6] text-slate-950"
+    ? "bg-gradient-to-br from-black via-gray-950 to-black text-white"
+    : "bg-gradient-to-br from-slate-100 via-white to-orange-50 text-slate-950"
   const cardClass = isDark
     ? "border-white/10 bg-gray-900"
     : "border-slate-200 bg-transparent"
@@ -582,229 +570,63 @@ const closeSearchModal = () => {
 
       {activePage === "home" && (
         <section className="max-w-7xl mx-auto px-5 pt-0 pb-14">
-          <div
-    ref={heroRef}
-  className={`
-    relative
-    min-h-[720px]
-    overflow-hidden
-    rounded-b-[2.5rem]
-    border
-    shadow-2xl
-    transition-all
-    duration-500
-    ${
-      isDark
-        ? "border-white/10 bg-black"
-        : "border-slate-200 bg-white"
-    }
-  `}
->
+          <div className="relative min-h-[620px] overflow-hidden rounded-b-[2rem] border border-white/10 bg-black shadow-2xl">
+            <img
+              src={featuredMovie.image.original}
+              alt={featuredMovie.name}
+              className="absolute inset-0 h-full w-full object-cover opacity-55"
+            />
 
-  <div
-    className="absolute inset-0 scale-110"
-    style={{
-      transform: `translateY(${scrollY * 0.35}px) scale(1.12)`,
-      transition: "transform .1s linear",
-    }}
-  >
-    <img
-      src={featuredMovie.image.original}
-      alt={featuredMovie.name}
-      className="
-        h-full
-        w-full
-        object-cover
-        opacity-70
-        animate-[heroZoom_18s_ease-in-out_infinite_alternate]
-      "
-    />
-  </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
 
-  <div
-    className={`
-      absolute inset-0
-      ${
-        isDark
-          ? "bg-gradient-to-r from-black via-black/80 to-black/20"
-          : "bg-gradient-to-r from-white via-white/70 to-white/10"
-      }
-    `}
-  ></div>
+            <div className="relative z-10 flex min-h-[620px] max-w-3xl flex-col justify-end px-6 py-10 text-white md:px-12 md:py-16">
+              <span className="mb-5 w-fit rounded-full border border-yellow-400/40 bg-yellow-400/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-yellow-200">
+                {text.featured}
+              </span>
 
-  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <h1 className="mb-5 text-5xl font-extrabold leading-tight md:text-7xl">
+                {featuredMovie.name}
+              </h1>
 
-  <div
-    className="
-      absolute
-      -left-20
-      top-10
-      h-[320px]
-      w-[320px]
-      rounded-full
-      bg-red-500/20
-      blur-3xl
-    "
-  ></div>
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-yellow-400 px-4 py-2 text-sm font-extrabold text-black">
+                  {text.rating} {featuredMovie.rating.average}
+                </span>
 
-  <div
-    className="
-      absolute
-      bottom-0
-      right-0
-      h-[320px]
-      w-[320px]
-      rounded-full
-      bg-yellow-500/20
-      blur-3xl
-    "
-  ></div>
+                {featuredMovie.genres.map((genre) => (
+                  <span
+                    key={genre}
+                    className="rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur"
+                  >
+                    {getGenreLabel(genre)}
+                  </span>
+                ))}
+              </div>
 
-  <div className="relative z-10 flex min-h-[720px] max-w-3xl flex-col justify-end px-6 py-14 md:px-14">
+              <p className="mb-8 max-w-2xl text-base leading-relaxed text-gray-200 md:text-lg">
+                {text.summaries[featuredMovie.name]}
+              </p>
 
-    <span
-      className="
-        mb-5
-        w-fit
-        rounded-full
-        border
-        border-yellow-400/30
-        bg-yellow-400/10
-        px-5
-        py-2
-        text-xs
-        font-extrabold
-        uppercase
-        tracking-[0.25em]
-        text-yellow-300
-        backdrop-blur-xl
-      "
-    >
-      {text.featured}
-    </span>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedMovie(featuredMovie)}
+                  className="rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 px-7 py-4 text-sm font-extrabold text-white shadow-2xl shadow-red-500/20 transition hover:scale-105"
+                >
+                  {text.watchTrailer}
+                </button>
 
-    {/* TITLE */}
-    <h1
-      className={`
-        mb-5
-        text-5xl
-        font-black
-        leading-none
-        tracking-tight
-        drop-shadow-2xl
-        md:text-8xl
-        ${
-          isDark
-            ? "text-white"
-            : "text-slate-950"
-        }
-      `}
-    >
-      {featuredMovie.name}
-    </h1>
-
-    {/* GENRES */}
-    <div className="mb-6 flex flex-wrap items-center gap-3">
-
-      <span className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-extrabold text-black shadow-xl">
-        {text.rating} {featuredMovie.rating.average}
-      </span>
-
-      {featuredMovie.genres.map((genre) => (
-        <span
-          key={genre}
-          className={`
-            rounded-full
-            px-5
-            py-2
-            text-sm
-            font-semibold
-            backdrop-blur-xl
-            ${
-              isDark
-                ? "bg-white/10 text-white"
-                : "bg-black/10 text-slate-900"
-            }
-          `}
-        >
-          {getGenreLabel(genre)}
-        </span>
-      ))}
-    </div>
-
-    {/* SUMMARY */}
-    <p
-      className={`
-        mb-8
-        max-w-2xl
-        text-base
-        leading-relaxed
-        md:text-xl
-        ${
-          isDark
-            ? "text-gray-200"
-            : "text-slate-700"
-        }
-      `}
-    >
-      {text.summaries[featuredMovie.name]}
-    </p>
-
-    {/* BUTTONS */}
-    <div className="flex flex-wrap gap-4">
-
-      <button
-        type="button"
-        onClick={() => setSelectedMovie(featuredMovie)}
-        className="
-          rounded-full
-          bg-gradient-to-r
-          from-red-500
-          via-orange-500
-          to-yellow-400
-          px-8
-          py-4
-          text-sm
-          font-extrabold
-          text-white
-          shadow-2xl
-          shadow-red-500/30
-          transition-all
-          duration-300
-          hover:scale-110
-          hover:shadow-red-500/50
-        "
-      >
-        {text.watchTrailer}
-      </button>
-
-      <button
-        type="button"
-        onClick={() => onNavigate("movies")}
-        className={`
-          rounded-full
-          border
-          px-8
-          py-4
-          text-sm
-          font-bold
-          backdrop-blur-xl
-          transition-all
-          duration-300
-          hover:scale-105
-          ${
-            isDark
-              ? "border-white/20 bg-white/10 text-white hover:bg-white/20"
-              : "border-slate-300 bg-white/70 text-slate-900 hover:bg-white"
-          }
-        `}
-      >
-        {text.openMovies}
-      </button>
-
-    </div>
-  </div>
-</div>
+                <button
+                  type="button"
+                  onClick={() => onNavigate("movies")}
+                  className="rounded-full border border-white/20 bg-white/10 px-7 py-4 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  {text.openMovies}
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div className="py-14 text-center">
             <h2 className="mb-4 bg-gradient-to-r from-red-500 via-yellow-400 to-orange-500 bg-clip-text text-4xl font-extrabold text-transparent md:text-6xl">
@@ -1239,7 +1061,7 @@ function MovieCard({ movie, text, isDark, getGenreLabel, onSelect, compact = fal
         <img
           src={movie.image.medium}
           alt={movie.name}
-          className={`${compact ? "h-[360px]" : "h-[380px]"} w-full object-cover transition duration-700 ease-out group-hover:scale-125 group-hover:rotate-1`}
+          className={`${compact ? "h-[360px]" : "h-[380px]"} w-full object-cover transition duration-500 group-hover:scale-110`}
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
@@ -1355,17 +1177,5 @@ function MovieModal({ movie, text, isDark, getGenreLabel, onClose }) {
     </div>
   )
 }
-
-<style jsx global>{`
-  @keyframes heroZoom {
-    0% {
-      transform: scale(1.05);
-    }
-
-    100% {
-      transform: scale(1.18);
-    }
-  }
-`}</style>
 
 export default Home
