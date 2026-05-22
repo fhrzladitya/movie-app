@@ -496,17 +496,6 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, []);
 
   useEffect(() => {
-    if (showSearchModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [showSearchModal]);
-
-  useEffect(() => {
     if (activePage !== "api" || apiFetched) return;
 
     let isMounted = true;
