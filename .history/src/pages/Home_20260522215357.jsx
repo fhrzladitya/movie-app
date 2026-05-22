@@ -532,6 +532,12 @@ function Home({ theme, language, activePage, onNavigate }) {
   }, [activePage, apiFetched]);
 
   useEffect(() => {
+    const savedSearches =
+      JSON.parse(localStorage.getItem("recent-searches")) || [];
+    setRecentSearches(savedSearches);
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
   }, [recentSearches]);
 

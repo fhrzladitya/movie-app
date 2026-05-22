@@ -466,10 +466,11 @@ function Home({ theme, language, activePage, onNavigate }) {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchCommitted, setSearchCommitted] = useState(false);
   const [lastSearch, setLastSearch] = useState("");
-  const [recentSearches, setRecentSearches] = useState(() => {
-    const saved = localStorage.getItem("recent-searches");
-    return saved ? JSON.parse(saved) : [];
-  });
+  useEffect(() => {
+    const savedSearches =
+      JSON.parse(localStorage.getItem("recent-searches")) || [];
+    setRecentSearches(savedSearches);
+  }, []);
   const heroRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const [pageTransition, setPageTransition] = useState(false);
@@ -493,7 +494,7 @@ function Home({ theme, language, activePage, onNavigate }) {
     if (activePage !== "api" || apiFetched) return;
 
     let isMounted = true;
-    
+
     const fetchApiData = async () => {
       setApiLoading(true);
 
@@ -530,6 +531,12 @@ function Home({ theme, language, activePage, onNavigate }) {
       isMounted = false;
     };
   }, [activePage, apiFetched]);
+
+  useEffect(() => {
+    const savedSearches =
+      JSON.parse(localStorage.getItem("recent-searches")) || [];
+    setRecentSearches(savedSearches);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));

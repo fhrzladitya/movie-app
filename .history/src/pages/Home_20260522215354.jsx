@@ -493,7 +493,6 @@ function Home({ theme, language, activePage, onNavigate }) {
     if (activePage !== "api" || apiFetched) return;
 
     let isMounted = true;
-    
     const fetchApiData = async () => {
       setApiLoading(true);
 
@@ -530,6 +529,12 @@ function Home({ theme, language, activePage, onNavigate }) {
       isMounted = false;
     };
   }, [activePage, apiFetched]);
+
+  useEffect(() => {
+    const savedSearches =
+      JSON.parse(localStorage.getItem("recent-searches")) || [];
+    setRecentSearches(savedSearches);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("recent-searches", JSON.stringify(recentSearches));
